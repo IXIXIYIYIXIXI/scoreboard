@@ -1,6 +1,3 @@
-$(document).ready(function() {
-    $('#SignIn').modal({backdrop: 'static', keyboard: false});
-});
 
 function initClient() {
     var API_KEY = "AIzaSyBZVkWNos71BbPDZBqmGq1mqrAWKcGTU8w";
@@ -25,6 +22,8 @@ function handleClientLoad() {
 function updateSignInStatus(isSignedIn) {
     if (isSignedIn) {
         renderContent();
+    } else {
+        $('#SignIn').modal({backdrop: 'static', keyboard: false});
     }
 }
 
@@ -48,7 +47,8 @@ function renderContent() {
     makeApiCall("Profiles!A2:C1000").then(function(response) {
         let rows = response.result.values;
         rows.forEach(row => {
-            $("#scoreboard").append($(`<tr>${row}</tr>`));
+            let tr = $("<tr>").text(row);
+            $("#scoreboard").append(tr);
         });
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
