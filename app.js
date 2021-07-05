@@ -2,8 +2,8 @@ function makeApiCall() {
     var params = {
         spreadsheetId: "1DDhxHZlb-JjFoqZG871_z6NcMBhhslZ1u0LQI89dNPA",
         range: "Profiles!A2:C2",
-        valueRenderOption: "",
-        dateTimeRenderOption: ""
+        valueRenderOption: "FORMATTED_VALUE",
+        dateTimeRenderOption: "SERIAL_NUMBER"
     };
     var request = gapi.client.sheets.spreadsheets.values.get(params);
     request.then(function(response) {
