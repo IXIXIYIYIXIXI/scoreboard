@@ -7,7 +7,7 @@
     background-color: #f0f0f0;
 }
 
-.copyright{
+.feet {
     line-height: 60px;
     padding-left: 40px;
 }
@@ -26,3 +26,7 @@
     transform: translateY(-50%);
 }
 
+#userSelect {
+    width: 500px;
+    height: 1000px;
+}
