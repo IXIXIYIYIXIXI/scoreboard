@@ -37,7 +37,7 @@ function makeApiCall(range) {
     };
     return request = gapi.client.sheets.spreadsheets.values.get(params)
     .then(function(response) {
-        return response.result;
+        return response.result['Xi'];
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
         return null;
