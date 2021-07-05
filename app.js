@@ -46,7 +46,7 @@ function renderContent() {
     makeApiCall("Profiles!A2:C1000").then(function(response) {
         let users = response.result.values;
         users.forEach(user => {
-            let option = $("<option>").text(row[1]);
+            let option = $("<option>").text(user[1]);
             $("#userSelect").append(option);
         });
     }, function(reason) {
