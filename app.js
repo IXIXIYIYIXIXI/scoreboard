@@ -37,7 +37,7 @@ function makeApiCall(range) {
     };
     return request = gapi.client.sheets.spreadsheets.values.get(params)
     .then(function(response) {
-        return response.result['Xi'];
+        return response.result;
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
         return null;
@@ -48,6 +48,6 @@ function renderContent() {
     $("#signin-button").remove();
 
     let scoreboard = $("#scoreboard");
-    let users = makeApiCall("Profiles!A2:C1000").then(value => users = value);
+    let users = makeApiCall("Profiles!A2:C1000").then(value => users = value['Xi']);
     console.log(users);
 }
