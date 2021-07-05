@@ -1,3 +1,7 @@
+$(document).ready(function() {
+
+});
+
 function initClient() {
     var API_KEY = "AIzaSyBZVkWNos71BbPDZBqmGq1mqrAWKcGTU8w";
     var CLIENT_ID = "483324398762-spin1l8qnducebdmjg1ldbp28tccto5f.apps.googleusercontent.com";
@@ -48,6 +52,6 @@ function renderContent() {
     $("#signin-button").remove();
 
     let scoreboard = $("#scoreboard");
-    let users = makeApiCall("Profiles!A2:C1000").then(value => users = value['Xi']);
+    let users = makeApiCall("Profiles!A2:C1000").then(value => users = value);
     console.log(users);
 }
