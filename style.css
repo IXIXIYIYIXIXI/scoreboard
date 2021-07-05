@@ -11,3 +11,12 @@
     line-height: 60px;
     padding-left: 40px;
 }
+
+.splash {
+    padding:75px;
+    display: block; 
+    margin: auto;
+    max-width: 100%; 
+    height: auto;
+}
+
