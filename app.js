@@ -43,7 +43,7 @@ function makeApiCall(range) {
 };
 
 function renderContent() {
-    $("#signin-button").remove();
+    $("#SignIn").remove();
 
     let scoreboard = $("#scoreboard");
     makeApiCall("Profiles!A2:C1000").then(function(response) {
