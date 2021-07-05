@@ -53,8 +53,9 @@ function renderContent() {
                     ),
                     $("<td>").append(
                         $("<p>", { "text": user[1] })
-                    )
-            ));
+                    ),
+                { "background-color": user[2]})
+            );
         });
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
