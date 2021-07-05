@@ -43,14 +43,12 @@ function makeApiCall(range) {
 };
 
 function renderContent() {
-    $("#SignIn").remove();
+    $('#SignIn').modal('hide');
 
     let scoreboard = $("#scoreboard");
     makeApiCall("Profiles!A2:C1000").then(function(response) {
         let rows = response.result.values;
-        rows.array.forEach(row => {
-            scoreboard.append(`<tr>${row}</tr>`);
-        });
+        console.log(rows);
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
     });
