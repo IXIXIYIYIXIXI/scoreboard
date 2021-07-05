@@ -32,26 +32,23 @@ function handleSignInClick(event) {
     gapi.auth2.getAuthInstance().signIn();
 }
 
-async function makeApiCall(range) {
+function makeApiCall(range) {
     var params = {
         spreadsheetId: "1DDhxHZlb-JjFoqZG871_z6NcMBhhslZ1u0LQI89dNPA",
         range: range,
         valueRenderOption: "FORMATTED_VALUE",
         dateTimeRenderOption: "SERIAL_NUMBER"
     };
-    request = gapi.client.sheets.spreadsheets.values.get(params)
-    .then(function(response) {
-        return response.result;
-    }, function(reason) {
-        console.error("Error: " + reason.result.error.message);
-        return null;
-    });
+    return gapi.client.sheets.spreadsheets.values.get(params);
 };
 
-async function renderContent() {
+function renderContent() {
     $("#signin-button").remove();
 
     let scoreboard = $("#scoreboard");
-    let users = await makeApiCall("Profiles!A2:C1000").then(value => users = value);
-    console.log(users);
+    makeApiCall("Profiles!A2:C1000").then(function(response) {
+        console.log(response.result);
+    }, function(reason) {
+        console.error("Error: " + reason.result.error.message);
+    });
 }
