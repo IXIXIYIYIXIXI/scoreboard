@@ -54,7 +54,7 @@ function renderContent() {
                     $("<td>").append(
                         $("<p>", { "text": user[1] })
                     ),
-                { "background-color": user[2]})
+                ), { "background-color": user[2]}
             );
         });
     }, function(reason) {
