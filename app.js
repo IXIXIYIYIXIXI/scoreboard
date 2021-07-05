@@ -11,9 +11,6 @@ function initClient() {
     }).then(function() {
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
         updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-
-        $("#signin-button").click();
-        $("#signin-button").remove();
     });
 }
 
@@ -31,10 +28,6 @@ function handleSignInClick(event) {
     gapi.auth2.getAuthInstance().signIn();
 }
 
-function handleSignOutClick(event) {
-    gapi.auth2.getAuthInstance().signOut();
-}
-
 function makeApiCall(range) {
     var params = {
         spreadsheetId: "1DDhxHZlb-JjFoqZG871_z6NcMBhhslZ1u0LQI89dNPA",
@@ -43,14 +36,18 @@ function makeApiCall(range) {
         dateTimeRenderOption: "SERIAL_NUMBER"
     };
     var request = gapi.client.sheets.spreadsheets.values.get(params);
+    var res = null;
     request.then(function(response) {
-        return response.result;
+        res = response.result;
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
     });
+    return res;
 };
 
 function renderContent() {
+    $("#signin-button").remove();
+
     let scoreboard = $("#scoreboard");
     let users = makeApiCall("Profiles!A2:C1000");
     console.log(users);
