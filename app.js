@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    $('#SignIn').modal({backdrop: 'static', keyboard: false});
 });
 
 function initClient() {
