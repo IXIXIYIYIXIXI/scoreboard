@@ -15,6 +15,20 @@
         <script src="app.js"></script>
         <script src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
         </script>
+
+        <div id="SignIn" class="modal" role="dialog">
+            <div class="modal-dialog" style="width:15%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Please Sign in Below</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="signin-button" onclick="handleSignInClick()" class="btn" data-dismiss="modal" >Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <table id="scoreboard">
             
         </table>
