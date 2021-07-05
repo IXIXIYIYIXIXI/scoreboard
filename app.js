@@ -36,8 +36,8 @@ function makeApiCall(range) {
         dateTimeRenderOption: "SERIAL_NUMBER"
     };
     var request = gapi.client.sheets.spreadsheets.values.get(params);
-    var res = null;
     request.then(function(response) {
+        console.log(response.result);
         res = response.result;
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
