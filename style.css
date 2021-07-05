@@ -26,11 +26,6 @@
     transform: translateY(-50%);
 }
 
-#userSelect {
-    width: 500px;
-    height: 1000px;
-}
-
 .profilePicture {
     width: 64px;
     height: 64px;
