@@ -12,7 +12,8 @@ function initClient() {
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
         updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 
-        gapi.auth2.getAuthInstance().signIn();
+        $("#signin-button").click();
+        $("#signin-button").remove();
     });
 }
 
@@ -43,7 +44,7 @@ function makeApiCall(range) {
     };
     var request = gapi.client.sheets.spreadsheets.values.get(params);
     request.then(function(response) {
-        return response.result.values;
+        return response.result;
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
     });
