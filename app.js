@@ -44,10 +44,10 @@ function makeApiCall(range) {
 
 function renderContent() {
     makeApiCall("Profiles!A2:C1000").then(function(response) {
-        let rows = response.result.values;
-        rows.forEach(row => {
-            let tr = $("<tr>").text(row);
-            $("#scoreboard").append(tr);
+        let users = response.result.values;
+        users.forEach(user => {
+            let option = $("<option>").text(row[1]);
+            $("#userSelect").append(option);
         });
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
