@@ -48,7 +48,7 @@ async function makeApiCall(range) {
     });
 };
 
-function renderContent() {
+async function renderContent() {
     $("#signin-button").remove();
 
     let scoreboard = $("#scoreboard");
