@@ -48,7 +48,7 @@ function renderContent() {
     makeApiCall("Profiles!A2:C1000").then(function(response) {
         let rows = response.result.values;
         rows.forEach(row => {
-            $("#scoreboard").append(`<tr>${row}</tr>`);
+            $("#scoreboard").append($(`<tr>${row}</tr>`));
         });
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
