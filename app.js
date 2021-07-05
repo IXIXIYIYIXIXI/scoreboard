@@ -48,8 +48,12 @@ function renderContent() {
         users.forEach(user => {
             $("#userSelect").append(
                 $("<tr>").append(
-                    $("<img>", { "src": user[3] }),
-                    $("<p>", { "text": user[1] })
+                    $("<td>").append(
+                        $("<img>", { "src": user[3], "class": "profilePicture" })
+                    ),
+                    $("<td>").append(
+                        $("<p>", { "text": user[1] })
+                    )
             ));
         });
     }, function(reason) {
