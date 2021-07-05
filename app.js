@@ -21,6 +21,7 @@ function handleClientLoad() {
 
 function updateSignInStatus(isSignedIn) {
     if (isSignedIn) {
+        $('#SignIn').modal('hide');
         renderContent();
     } else {
         $('#SignIn').modal({backdrop: 'static', keyboard: false});
@@ -42,8 +43,6 @@ function makeApiCall(range) {
 };
 
 function renderContent() {
-    $('#SignIn').modal('hide');
-
     makeApiCall("Profiles!A2:C1000").then(function(response) {
         let rows = response.result.values;
         rows.forEach(row => {
