@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    gapi.auth2.getAuthInstance().signIn();
-});
-
 function initClient() {
     var API_KEY = "AIzaSyBZVkWNos71BbPDZBqmGq1mqrAWKcGTU8w";
     var CLIENT_ID = "483324398762-spin1l8qnducebdmjg1ldbp28tccto5f.apps.googleusercontent.com";
@@ -15,6 +11,8 @@ function initClient() {
     }).then(function() {
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
         updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+
+        gapi.auth2.getAuthInstance().signIn();
     });
 }
 
