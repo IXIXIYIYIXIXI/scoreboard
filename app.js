@@ -49,7 +49,8 @@ function renderContent() {
             let option = $("<option>");
             let profilePicture = $("img").attr("src", user[3]);
             let name = $("p").text(user[2]);
-            option.append(profilePicture, name);
+            option.append(profilePicture);
+            option.append(name);
             $("#userSelect").append(option);
         });
     }, function(reason) {
