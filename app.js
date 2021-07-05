@@ -46,11 +46,11 @@ function renderContent() {
     makeApiCall("Profiles!A2:D1000").then(function(response) {
         let users = response.result.values;
         users.forEach(user => {
-            let name = $("p").text(user[1]);
-            let pfp = $("img").attr("src", user[3]);
-            let tr = $("<tr>");
-            tr.append(pfp, name);
-            $("#userSelect").append(tr);
+            $("#userSelect").append(
+                $("<tr>").append(
+                    $("<img>", { "src": user[3] }),
+                    $("<p>", { "text": user[1] })
+            ));
         });
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
