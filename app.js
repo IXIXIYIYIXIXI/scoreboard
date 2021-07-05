@@ -35,19 +35,19 @@ function makeApiCall(range) {
         valueRenderOption: "FORMATTED_VALUE",
         dateTimeRenderOption: "SERIAL_NUMBER"
     };
-    var request = gapi.client.sheets.spreadsheets.values.get(params);
-    request.then(function(response) {
-        return response.result;
-    }, function(reason) {
-        console.error("Error: " + reason.result.error.message);
-        return null;
-    });
+    return request = gapi.client.sheets.spreadsheets.values.get(params)
+        .then(function(response) {
+            return response.result;
+        }, function(reason) {
+            console.error("Error: " + reason.result.error.message);
+            return null;
+        });
 };
 
 function renderContent() {
     $("#signin-button").remove();
 
     let scoreboard = $("#scoreboard");
-    let users = makeApiCall("Profiles!A2:C1000");
+    let users = makeApiCall("Profiles!A2:C1000").then(value => users = value);
     console.log(users);
 }
