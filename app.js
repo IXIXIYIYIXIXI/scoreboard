@@ -43,10 +43,13 @@ function makeApiCall(range) {
 };
 
 function renderContent() {
-    makeApiCall("Profiles!A2:C1000").then(function(response) {
+    makeApiCall("Profiles!A2:D1000").then(function(response) {
         let users = response.result.values;
         users.forEach(user => {
-            let option = $("<option>").text(user[1]);
+            let option = $("<option>");
+            let profilePicture = $("img").attr("src", user[3]);
+            let name = $("p").text(user[2]);
+            option.append(profilePicture, name);
             $("#userSelect").append(option);
         });
     }, function(reason) {
