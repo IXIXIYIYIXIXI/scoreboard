@@ -31,15 +31,12 @@
     height: 64px;
 }
 
-tr {
-    border: 1px solid #000000;
-}
-
 td {
     vertical-align: middle;
     text-align: center;
     display: table-cell;
     width: 64px;
+    border: 1px solid #000000;
 }
 
 td p {
