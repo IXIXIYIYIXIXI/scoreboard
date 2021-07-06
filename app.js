@@ -61,7 +61,6 @@ function renderContent() {
         return luma > 150 ? "#000000" : "#ffffff";
     }
 
-    $("#startButton").removeClass("hidden");
     makeApiCall("Profiles!A2:D1000").then(function(response) {
         let users = response.result.values;
         users.forEach(user => {
@@ -79,6 +78,8 @@ function renderContent() {
                 ).css({ "background-color": user[2] })
             );
         });
+
+        $("#content").removeClass("hidden");
     }, function(reason) {
         console.error("Error: " + reason.result.error.message);
     });
