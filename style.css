@@ -30,3 +30,23 @@
     width: 64px;
     height: 64px;
 }
+
+tr {
+    border: 1px solid #000000;
+}
+
+td {
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    width: 64px;
+}
+
+td p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.hidden {
+    display: none;
+}

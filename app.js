@@ -42,7 +42,26 @@ function makeApiCall(range) {
     return gapi.client.sheets.spreadsheets.values.get(params);
 };
 
+function startButtonPressed() {
+    $("#userSelect").children().each(function(index, tr) {
+        if ($(tr).find("input").is(":checked")) {
+            console.log(index, $(tr).find("p").text());
+        }
+    });
+}
+
 function renderContent() {
+    function getTextColor(hex) {
+        var hex = hex.substring(1);
+        var rgb = parseInt(hex, 16);
+        var r = (rgb >> 16) & 0xff;
+        var g = (rgb >>  8) & 0xff;
+        var b = (rgb >>  0) & 0xff;
+        var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        return luma > 150 ? "#000000" : "#ffffff";
+    }
+
+    $("#startButton").removeClass("hidden");
     makeApiCall("Profiles!A2:D1000").then(function(response) {
         let users = response.result.values;
         users.forEach(user => {
@@ -52,8 +71,11 @@ function renderContent() {
                         $("<img>", { "src": user[3], "class": "profilePicture" })
                     ),
                     $("<td>").append(
-                        $("<p>", { "text": user[1] })
+                        $("<p>", { "text": user[1] }).css({ "color": getTextColor(user[2]) })
                     ),
+                    $("<td>").append(
+                        $("<input>", { "type": "checkbox" })
+                    )
                 ).css({ "background-color": user[2] })
             );
         });
