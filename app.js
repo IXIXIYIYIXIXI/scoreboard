@@ -48,6 +48,7 @@ function startButtonPressed() {
             console.log(index, $(tr).find("p").text());
         }
     });
+    // $("#userSelect").addClass("hidden");
 }
 
 function renderContent() {
@@ -73,7 +74,7 @@ function renderContent() {
                         $("<p>", { "text": user[1] }).css({ "color": getTextColor(user[2]) })
                     ),
                     $("<td>").append(
-                        $("<input>", { "type": "checkbox" })
+                        $("<input>", { "class": "placeholder", "type": "checkbox" })
                     )
                 ).css({ "background-color": user[2] })
             );
