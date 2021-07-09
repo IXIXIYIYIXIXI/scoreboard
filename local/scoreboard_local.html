@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel ="stylesheet "href="./style_local.css" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="./app_local.js"></script>
+        <script src="./buttons_local.js"></script>
+        <title>Scoreboard</title> 
+    </head>
+    <body>
+        <div id="content" class="hidden center-screen">
+            <div id="pregame">
+                <div id="userSelect">
+
+                </div>
+                <button id="startButton" onclick="startButtonPressed()">Start</button>
+                <button id="selectAllButton" onclick="selectAllButtonPressed()">Select All</button>
+                <button id="deselectAllButton" onclick="deselectAllButtonPressed()">Deselect All</button>
+            </div>
+            <div id="scoreboard" class="hidden">
+
+            </div>
+        </div>
+    </body>
+</html>

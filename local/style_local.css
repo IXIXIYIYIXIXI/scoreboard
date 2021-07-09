@@ -1,0 +1,33 @@
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.row-wrapper {
+    display: block;
+    padding: 10px 0 10px 0;
+}
+
+.pfp-wrapper, .name-wrapper, .checkbox-wrapper {
+    width: 64px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pfp {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
