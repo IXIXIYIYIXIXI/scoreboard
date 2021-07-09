@@ -121,5 +121,19 @@ var startGame = function(players) {
 };
 
 var updateScoreboard = function() {
-    
+    let rowDivs = $("#scoreboard").children().get();
+    rowDivs.sort(function(a, b) {
+        let aScore = parseInt($(a).find(".score").text());
+        let bScore = parseInt($(b).find(".score").text());
+        if (aScore > bScore) {
+            return -1;
+        } else if (aScore < bScore) {
+            return 1;
+        } else {
+            return $(a).find(".name").text() < $(b).find(".name").text() ? -1 : 1;
+        }
+    });
+    rowDivs.forEach(rowDiv => {
+        $("#scoreboard").append($(rowDiv));
+    });
 }

@@ -17,7 +17,9 @@ function startButtonPressed() {
             players.push($(rowDiv).data("user"));
         }
     });
-    startGame(players);
+    if (players.length > 0) {
+        startGame(players);
+    }
 }
 
 function backButtonPressed() {
@@ -29,10 +31,12 @@ function incrementButtonPressed(event) {
     let scoreSpan = $(event.path[2]).find(".score");
     let score = parseInt(scoreSpan.text());
     scoreSpan.text(score + 1);
+    updateScoreboard();
 }
 
 function decrementButtonPressed(event) {
     let scoreSpan = $(event.path[2]).find(".score");
     let score = parseInt(scoreSpan.text());
     scoreSpan.text(Math.max(0, score - 1));
+    updateScoreboard();
 }
