@@ -18,7 +18,7 @@
     padding: 10px 0 10px 0;
 }
 
-.pfp-wrapper, .name-wrapper, .checkbox-wrapper {
+.pfp-wrapper, .name-wrapper, .checkbox-wrapper, .score-wrapper, .increment-wrapper, .decrement-wrapper {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -47,7 +47,7 @@
     object-fit: cover;
 }
 
-.name {
+.name, .score {
     font-family: drunk_font;
     display: inline-block;
     vertical-align: middle;
