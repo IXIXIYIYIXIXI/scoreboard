@@ -51,7 +51,7 @@ let displayUserSelect = function(users) {
         nameDiv.append(nameSpan);
 
         let checkboxDiv = $("<div>", { class: "checkbox-wrapper" });
-        let checkboxInput = $("<input>", { type: "checkbox" });
+        let checkboxInput = $("<input>", { type: "checkbox", class: "checkbox" });
         checkboxDiv.append(checkboxInput);
 
         let rowDiv = $("<div>", { class: "row-wrapper" });

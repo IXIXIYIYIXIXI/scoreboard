@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'drunk_font';
+    src: url("../fonts/drunk_font.ttf");
+}
+
 .center-screen {
     display: flex;
     flex-direction: column;
@@ -8,15 +13,31 @@
 }
 
 .row-wrapper {
+    width: 100%;
     display: block;
     padding: 10px 0 10px 0;
 }
 
 .pfp-wrapper, .name-wrapper, .checkbox-wrapper {
-    width: 64px;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+}
+
+.pfp-wrapper {
+    width: 5rem;
+    padding-left: 1rem;
+}
+
+.name-wrapper {
+    width: 36rem;
+    text-align: left;
+    margin-left: 50px;
+}
+
+.checkbox-wrapper {
+    width: 5rem;
+    padding-right: 1rem;
 }
 
 .pfp {
@@ -27,7 +48,20 @@
 }
 
 .name {
+    font-family: drunk_font;
     display: inline-block;
     vertical-align: middle;
-    line-height: normal;
+    line-height: normal;    
+    font-size: 18px;
 }
+
+.checkbox {
+    border: none;
+    width: 3rem;
+    height: 3rem;
+}
+
+.btn-group-lg {
+    padding: 5px;
+}
+

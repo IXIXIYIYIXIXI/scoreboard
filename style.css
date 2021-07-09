@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'drunk_font';
+    src: url("https://github.com/IXIXIYIYIXIXI/scoreboard/raw/main/fonts/drunk_font.ttf");
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -47,3 +52,4 @@ td p {
 .hidden {
     display: none;
 }
+ 
