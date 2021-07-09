@@ -37,7 +37,7 @@ let getDataFromDatabase = function() {
     });
 
     return userObjects;
-}
+};
 
 let displayUserSelect = function(users) {
     function generateRowDiv(user) {        
@@ -47,7 +47,7 @@ let displayUserSelect = function(users) {
 
         let nameDiv = $("<div>", { class: "name-wrapper" });
         let nameSpan = $("<span>", { class: "name" }).text(user.name);
-        nameSpan.css({ color: user.textColor })
+        nameSpan.css({ color: user.textColor });
         nameDiv.append(nameSpan);
 
         let checkboxDiv = $("<div>", { class: "checkbox-wrapper" });
@@ -57,6 +57,7 @@ let displayUserSelect = function(users) {
         let rowDiv = $("<div>", { class: "row-wrapper" });
         rowDiv.css({ "background-color": user.color });
         rowDiv.append(pfpDiv, nameDiv, checkboxDiv);
+        rowDiv.data("user", user);
 
         return rowDiv;
     }
@@ -66,9 +67,53 @@ let displayUserSelect = function(users) {
     })
 
     $("#content").removeClass("hidden");
-}
+};
 
 $(document).ready(function() {
     let users = getDataFromDatabase();
     displayUserSelect(users);
 });
+
+var startGame = function(players) {
+    function generateRowDiv(player) {        
+        let pfpDiv = $("<div>", { class: "pfp-wrapper" });
+        let pfpImg = $("<img>", { class: "pfp", src: player.pfpUrl });
+        pfpDiv.append(pfpImg);
+
+        let nameDiv = $("<div>", { class: "name-wrapper" });
+        let nameSpan = $("<span>", { class: "name" }).text(player.name);
+        nameSpan.css({ color: player.textColor });
+        nameDiv.append(nameSpan);
+
+        let scoreDiv = $("<div>", { class: "score-wrapper" });
+        let scoreSpan = $("<span>", { class: "score" }).text(0);
+        scoreSpan.css({ color: player.textColor });
+        scoreDiv.append(scoreSpan);
+
+        let incrementDiv = $("<div>", { class: "increment-wrapper" });
+        let incrementButton = $("<button>", { class: "increment-button", onclick: "incrementButtonPressed(event)" }).text("+");
+        incrementDiv.append(incrementButton);
+
+        let decrementDiv = $("<div>", { class: "decrement-wrapper" });
+        let decrementButton = $("<button>", { class: "decrement-button", onclick: "decrementButtonPressed(event)" }).text("-");
+        decrementDiv.append(decrementButton);
+
+        let rowDiv = $("<div>", { class: "row-wrapper" });
+        rowDiv.css({ "background-color": player.color });
+        rowDiv.append(pfpDiv, nameDiv, scoreDiv, incrementDiv, decrementDiv);
+        rowDiv.data("player", player);
+
+        return rowDiv;
+    }
+
+    players.forEach(player => {
+        $("#scoreboard").append(generateRowDiv(player));
+    });
+
+    $("#pregame").addClass("hidden");
+    $("#scoreboard").removeClass("hidden");
+};
+
+var updateScoreboard = function() {
+    
+}
