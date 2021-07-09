@@ -97,11 +97,11 @@ var startGame = function(players) {
         scoreDiv.append(scoreSpan);
 
         let incrementDiv = $("<div>", { class: "increment-wrapper" });
-        let incrementButton = $("<button>", { class: "increment-button", onclick: "incrementButtonPressed(event)" }).text("+");
+        let incrementButton = $("<button>", { type:"button", class: "increment-button btn btn-success btn-sm", onclick: "incrementButtonPressed(event)" }).text("+");
         incrementDiv.append(incrementButton);
 
         let decrementDiv = $("<div>", { class: "decrement-wrapper" });
-        let decrementButton = $("<button>", { class: "decrement-button", onclick: "decrementButtonPressed(event)" }).text("-");
+        let decrementButton = $("<button>", { type:"button",class: "decrement-button btn btn-danger btn-sm", onclick: "decrementButtonPressed(event)" }).text("-");
         decrementDiv.append(decrementButton);
 
         let rowDiv = $("<div>", { class: "row-wrapper" });

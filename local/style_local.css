@@ -13,33 +13,60 @@
 }
 
 .row-wrapper {
-    width: 100%;
+    position: relative;
+    width: 72rem;
+    height: 8rem;
     display: block;
     padding: 10px 0 10px 0;
 }
 
 .pfp-wrapper, .name-wrapper, .checkbox-wrapper, .score-wrapper, .increment-wrapper, .decrement-wrapper {
     display: inline-block;
-    text-align: center;
-    vertical-align: middle;
 }
 
 .pfp-wrapper {
-    width: 5rem;
-    padding-left: 1rem;
+    position: absolute;
+    left: 1rem;
 }
 
 .name-wrapper {
-    width: 35rem;
+    position: relative;
+    width: 30rem;
     text-align: left;
-    margin-left: 50px;
+    top: 1.5rem;
+    left: -10rem;
 }
 
 .checkbox-wrapper {
-    width: 5rem;
-    padding-right: 1rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
 }
 
+.score-wrapper {
+    top: 1rem;
+    right: 7rem;
+    position: absolute;
+}
+
+.increment-wrapper {
+    position: absolute;
+    right: 1.5rem;
+    top: .75rem;
+}
+
+.decrement-wrapper {
+    position: absolute;
+    right: 1.5rem;
+    bottom: .75rem;
+}
+
+.decrement-button, .increment-button {
+    font-family: drunk_font;
+    padding: 0px;
+    width: 3.75rem;
+    height: 3rem;
+}
 .pfp {
     width: 64px;
     height: 64px;
@@ -47,12 +74,20 @@
     object-fit: cover;
 }
 
-.name, .score {
+.name {
     font-family: drunk_font;
     display: inline-block;
     vertical-align: middle;
     line-height: normal;    
     font-size: 18px;
+}
+
+.score {
+    font-family: drunk_font;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;    
+    font-size: 28px;
 }
 
 .checkbox {
@@ -64,4 +99,6 @@
 .btn-group-lg {
     padding: 5px;
 }
+
+
 
