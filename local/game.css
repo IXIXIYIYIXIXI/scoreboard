@@ -14,7 +14,8 @@
 
 .row-wrapper {
     position: relative;
-    width: 72rem;
+    width: 50rem;
+    max-width: 100%; 
     height: 8rem;
     display: block;
     padding: 10px 0 10px 0;
@@ -34,7 +35,7 @@
     width: 30rem;
     text-align: left;
     top: 1.5rem;
-    left: -10rem;
+    left: -1rem;
 }
 
 .checkbox-wrapper {
@@ -103,28 +104,6 @@
 
 .btn-group-lg {
     padding: 5px;
-}
-
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #f0f0f0;
-}
-
-.feet {
-    line-height: 60px;
-    padding-left: 40px;
-}
-
-.splash {
-    padding:75px;
-    display: block; 
-    margin: auto;
-    max-width: 100%; 
-    height: auto;
 }
 
 .modal-dialog {

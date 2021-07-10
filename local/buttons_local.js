@@ -23,8 +23,13 @@ function startButtonPressed() {
 }
 
 function backButtonPressed() {
-    console.log("test");
-    window.location.href = "../index.html";
+    if($("#perigame").hasClass("hidden")){
+        console.log("test");
+        window.location.href = "../index.html";
+    }else{
+        $("#pregame").removeClass("hidden");
+        $("#perigame").addClass("hidden");
+    }
 }
 
 function incrementButtonPressed(event) {
