@@ -105,5 +105,53 @@
     padding: 5px;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f0f0f0;
+}
 
+.feet {
+    line-height: 60px;
+    padding-left: 40px;
+}
 
+.splash {
+    padding:75px;
+    display: block; 
+    margin: auto;
+    max-width: 100%; 
+    height: auto;
+}
+
+.modal-dialog {
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.profilePicture {
+    width: 64px;
+    height: 64px;
+}
+
+td {
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    width: 64px;
+    border: 1px solid #000000;
+}
+
+td p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.hidden {
+    display: none;
+}
+ 
