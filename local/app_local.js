@@ -13,7 +13,7 @@ let getDataFromDatabase = function() {
         [0, "Ishawn", "#8f00ff", "https://cdn.discordapp.com/avatars/164874920701067264/e203ec771f89b249a985833ed7e3b266.webp?size=128"],
         [1, "Kavin", "#404040", "https://cdn.discordapp.com/avatars/188463569157881856/a92ec885fce994c0727bf103deca8488.webp?size=128"],
         [2, "Andrew", "#2eca68", "https://cdn.discordapp.com/avatars/156934322165776384/f5309719034e85eded2c9ced46de0c6b.webp?size=128"],
-        [4, "Venkat", "#008080", "https://cdn.discordapp.com/avatars/142444164401987584/e5e01422082b56c074ba31d1e4f6538f.webp?size=128"],
+        [4, "Venkat", "#008080", "https://cdn.discordapp.com/attachments/863217152361365554/863217667335127040/venkat.jpg"],
         [5, "Anjali", "#D7707E", "https://cdn.discordapp.com/avatars/539256425927540758/3ed0ecddf7a20c077e7a3e2fd1fbb296.webp?size=128"],
         [6, "Ashlee", "#9AC8FF", "https://cdn.discordapp.com/avatars/235730443616518145/b18ad9afdd764f610af44b7f2cb74722.webp?size=128"],
         [7, "Jalen", "#000", "https://cdn.discordapp.com/avatars/198860502590423040/2a3d3204df5504cc5890e5bdf634c574.webp?size=128"],
@@ -97,11 +97,11 @@ var startGame = function(players) {
         scoreDiv.append(scoreSpan);
 
         let incrementDiv = $("<div>", { class: "increment-wrapper" });
-        let incrementButton = $("<button>", { type:"button", class: "increment-button btn btn-success btn-sm", onclick: "incrementButtonPressed(event)" }).text("+");
+        let incrementButton = $("<button>", { type:"button", class: "increment-button btn btn-sm", onclick: "incrementButtonPressed(event)" }).text("+");
         incrementDiv.append(incrementButton);
 
         let decrementDiv = $("<div>", { class: "decrement-wrapper" });
-        let decrementButton = $("<button>", { type:"button",class: "decrement-button btn btn-danger btn-sm", onclick: "decrementButtonPressed(event)" }).text("-");
+        let decrementButton = $("<button>", { type:"button",class: "decrement-button btn btn-sm", onclick: "decrementButtonPressed(event)" }).text("-");
         decrementDiv.append(decrementButton);
 
         let rowDiv = $("<div>", { class: "row-wrapper" });
