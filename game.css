@@ -21,7 +21,12 @@
     padding: 10px 0 10px 0;
 }
 
-.pfp-wrapper, .name-wrapper, .checkbox-wrapper, .score-wrapper, .increment-wrapper, .decrement-wrapper {
+.pfp-wrapper, 
+.name-wrapper,
+.checkbox-wrapper, 
+.score-wrapper, 
+.increment-wrapper, 
+.decrement-wrapper {
     display: inline-block;
 }
 

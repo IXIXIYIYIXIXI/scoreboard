@@ -1,6 +1,8 @@
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-  });
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();  
+    let users = getDataFromDatabase();
+    displayUserSelect(users);
+});
 
 let getDataFromDatabase = function() {
     function getTextColorForBackground(hex) {
@@ -78,11 +80,6 @@ let displayUserSelect = function(users) {
 
     $("#content").removeClass("hidden");
 };
-
-$(document).ready(function() {
-    let users = getDataFromDatabase();
-    displayUserSelect(users);
-});
 
 var startGame = function(players) {
     function generateRowDiv(player) {        
