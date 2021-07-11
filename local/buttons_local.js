@@ -33,6 +33,9 @@ function backButtonPressed() {
 }
 
 function incrementButtonPressed(event) {
+    var today = new Date();
+    let nameSpan = $(event.path[2]).find(".name");
+    console.log(nameSpan.text() + " drank one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
     let scoreSpan = $(event.path[2]).find(".score");
     let score = parseInt(scoreSpan.text());
     scoreSpan.text(score + 1);
@@ -40,6 +43,9 @@ function incrementButtonPressed(event) {
 }
 
 function decrementButtonPressed(event) {
+    var today = new Date();
+    let nameSpan = $(event.path[2]).find(".name");
+    console.log(nameSpan.text() + " removed one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
     let scoreSpan = $(event.path[2]).find(".score");
     let score = parseInt(scoreSpan.text());
     scoreSpan.text(Math.max(0, score - 1));
