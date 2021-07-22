@@ -53,7 +53,7 @@ let getDataFromDatabase = function() {
 
 
 function hotCommit(e) {
-    if (e.ctrlKey && e.key === 'Enter') {
+    if (e.key === 'Enter') {
         commitButtonPressed();
     }
 }
