@@ -120,6 +120,8 @@ var startGame = function(players) {
         $("#scoreboard").append(generateRowDiv(player));
     });
 
+    updateScoreboard();
+
     $("#pregame").addClass("hidden");
     $("#perigame").removeClass("hidden");
 };

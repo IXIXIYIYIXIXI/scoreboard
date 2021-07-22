@@ -48,9 +48,6 @@ function backButtonPressed() {
 }
 
 function incrementButtonPressed(event) {
-    let today = new Date();
-    let nameSpan = $(event.path[2]).find(".name");
-    // console.log(nameSpan.text() + " drank one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
     let addSpan = $(event.path[2]).find(".additional-score");
     let add = 0;
     if (addSpan.text().length !== 0) {
@@ -65,9 +62,6 @@ function incrementButtonPressed(event) {
 }
 
 function decrementButtonPressed(event) {
-    let today = new Date();
-    let nameSpan = $(event.path[2]).find(".name");
-    // console.log(nameSpan.text() + " removed one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
     let addSpan = $(event.path[2]).find(".additional-score");
     let add = 0;
     if (addSpan.text().length !== 0) {
@@ -97,6 +91,7 @@ function commitButtonPressed() {
             let score = parseInt($(rowDiv).find(".score").text());
             $(rowDiv).find(".score").text(score + add);
             $(rowDiv).find(".additional-score").text("");
+            console.log($(rowDiv).find(".name").text() + (add > 0 ? " drank " : " threw up ") + Math.abs(add) + " shot(s) at " + new Date());
         }
     });
     updateScoreboard();

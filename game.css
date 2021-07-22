@@ -3,6 +3,10 @@
     src: url("./fonts/drunk_font.ttf");
 }
 
+body {
+    background-color: #36393f !important;
+}
+
 .center-screen {
     display: flex;
     flex-direction: column;
