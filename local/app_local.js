@@ -51,6 +51,16 @@ let getDataFromDatabase = function() {
     return userObjects;
 };
 
+
+function hotCommit(e) {
+    if (e.ctrlKey && e.key === 'Enter') {
+        commitButtonPressed();
+    }
+}
+
+document.addEventListener('keyup', hotCommit, false);
+
+
 let displayUserSelect = function(users) {
     function generateRowDiv(user) {        
         let pfpDiv = $("<div>", { class: "pfp-wrapper" });
