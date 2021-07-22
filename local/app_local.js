@@ -16,16 +16,16 @@ let getDataFromDatabase = function() {
     }
 
     let users = [
-        [0, "Ishawn", "#8f00ff", "https://cdn.discordapp.com/avatars/164874920701067264/e203ec771f89b249a985833ed7e3b266.webp?size=128"],
+        [0, "Ishawn", "#7a25ba", "https://cdn.discordapp.com/avatars/164874920701067264/e203ec771f89b249a985833ed7e3b266.webp?size=128"],
         [1, "Kavin", "#404040", "https://cdn.discordapp.com/avatars/188463569157881856/a92ec885fce994c0727bf103deca8488.webp?size=128"],
         [2, "Andrew", "#2eca68", "https://cdn.discordapp.com/avatars/156934322165776384/f5309719034e85eded2c9ced46de0c6b.webp?size=128"],
         [4, "Venkat", "#008080", "https://cdn.discordapp.com/avatars/142444164401987584/e5e01422082b56c074ba31d1e4f6538f.webp?size=128"],
         [5, "Anjali", "#D7707E", "https://cdn.discordapp.com/avatars/539256425927540758/3ed0ecddf7a20c077e7a3e2fd1fbb296.webp?size=128"],
-        [6, "Ashlee", "#9AC8FF", "https://cdn.discordapp.com/avatars/235730443616518145/b18ad9afdd764f610af44b7f2cb74722.webp?size=128"],
-        [7, "Jalen", "#000", "https://cdn.discordapp.com/avatars/198860502590423040/2a3d3204df5504cc5890e5bdf634c574.webp?size=128"],
-        [8, "Will", "#ee2400", "https://cdn.discordapp.com/avatars/173933721919946752/120b291139b57857896167c767afd4d8.webp?size=128"],
-        [9, "Aadil", "#00FE00", "https://cdn.discordapp.com/avatars/180448170885644288/12a96f22081ac9f95987b98c1a4a7b5b.webp?size=128"],
-        [10, "Daniel", "#c0c0c0", "https://cdn.discordapp.com/avatars/164869984101728256/a_6b7544e9f6f6099b403ee57647a0df61.webp?size=128"]
+        [6, "Jalen", "#000000", "https://cdn.discordapp.com/avatars/198860502590423040/2a3d3204df5504cc5890e5bdf634c574.webp?size=128"],
+        [7, "Will", "#ee2400", "https://cdn.discordapp.com/avatars/173933721919946752/120b291139b57857896167c767afd4d8.webp?size=128"],
+        [8, "Daniel", "#c0c0c0", "https://cdn.discordapp.com/avatars/164869984101728256/a_6b7544e9f6f6099b403ee57647a0df61.webp?size=128"],
+        [9, "Sean", "#f547ff", "https://cdn.discordapp.com/avatars/165612940177833984/6c3b381a8d34a45f0e2de47a9e172333.webp?size=128"],
+        [10, "Sabrina", "#9acbff", "https://cdn.discordapp.com/avatars/716047120909598812/1f06bf796f707f355d29a2c2ea146e06.webp?size=128"]
     ];
     users.sort(function(a, b) {
         return a[1] < b[1] ? -1 : 1;
