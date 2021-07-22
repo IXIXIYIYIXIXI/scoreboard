@@ -24,7 +24,7 @@ let getDataFromDatabase = function() {
         [6, "Ashlee", "#9AC8FF", "https://cdn.discordapp.com/avatars/235730443616518145/b18ad9afdd764f610af44b7f2cb74722.webp?size=128"],
         [7, "Jalen", "#000", "https://cdn.discordapp.com/avatars/198860502590423040/2a3d3204df5504cc5890e5bdf634c574.webp?size=128"],
         [8, "Will", "#ee2400", "https://cdn.discordapp.com/avatars/173933721919946752/120b291139b57857896167c767afd4d8.webp?size=128"],
-        [9, "Aadil", "#00FE00", "https://cdn.discordapp.com/avatars/180448170885644288/95b74b47138ebd9971416f9d8b146afe.webp?size=128"],
+        [9, "Aadil", "#00FE00", "https://cdn.discordapp.com/avatars/180448170885644288/12a96f22081ac9f95987b98c1a4a7b5b.webp?size=128"],
         [10, "Daniel", "#c0c0c0", "https://cdn.discordapp.com/avatars/164869984101728256/a_6b7544e9f6f6099b403ee57647a0df61.webp?size=128"]
     ];
     users.sort(function(a, b) {
@@ -95,7 +95,10 @@ var startGame = function(players) {
         let scoreDiv = $("<div>", { class: "score-wrapper" });
         let scoreSpan = $("<span>", { class: "score" }).text(0);
         scoreSpan.css({ color: player.textColor });
+        let additionalScoreSpan = $("<span>", { class: "additional-score" }).text("");
+        additionalScoreSpan.css({ color: player.textColor, "padding-left": 20 });
         scoreDiv.append(scoreSpan);
+        scoreDiv.append(additionalScoreSpan);        
 
         let incrementDiv = $("<div>", { class: "increment-wrapper" });
         let incrementButton = $("<button>", { type:"button", class: "increment-button btn btn-sm", onclick: "incrementButtonPressed(event)" }).text("+");

@@ -93,7 +93,7 @@
     font-size: 18px;
 }
 
-.score {
+.score, .additional-score {
     font-family: drunk_font;
     display: inline-block;
     vertical-align: middle;

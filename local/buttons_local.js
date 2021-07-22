@@ -48,21 +48,56 @@ function backButtonPressed() {
 }
 
 function incrementButtonPressed(event) {
-    var today = new Date();
+    let today = new Date();
     let nameSpan = $(event.path[2]).find(".name");
-    console.log(nameSpan.text() + " drank one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
-    let scoreSpan = $(event.path[2]).find(".score");
-    let score = parseInt(scoreSpan.text());
-    scoreSpan.text(score + 1);
+    // console.log(nameSpan.text() + " drank one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
+    let addSpan = $(event.path[2]).find(".additional-score");
+    let add = 0;
+    if (addSpan.text().length !== 0) {
+        add = parseInt(addSpan.text().replace("(", "").replace("+", "").replace(")", ""));
+    }
+    if (add + 1 === 0) {
+        addSpan.text("");
+    } else {
+        addSpan.text("(" + (add + 1 > 0 ? "+": "") + (add + 1) + ")");
+    }
     updateScoreboard();
 }
 
 function decrementButtonPressed(event) {
-    var today = new Date();
+    let today = new Date();
     let nameSpan = $(event.path[2]).find(".name");
-    console.log(nameSpan.text() + " removed one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
-    let scoreSpan = $(event.path[2]).find(".score");
-    let score = parseInt(scoreSpan.text());
-    scoreSpan.text(Math.max(0, score - 1));
+    // console.log(nameSpan.text() + " removed one shot at " + today.getHours() + ':' + today.getMinutes()+  " on " + today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate());
+    let addSpan = $(event.path[2]).find(".additional-score");
+    let add = 0;
+    if (addSpan.text().length !== 0) {
+        add = parseInt(addSpan.text().replace("(", "").replace("+", "").replace(")", ""));
+    }
+    if (add - 1 === 0) {
+        addSpan.text("");
+    } else {
+        let score = parseInt($(event.path[2]).find(".score").text());
+        if (score + (add - 1) < 0) {
+            if (add == 0) {
+                addSpan.text("");
+            } else {
+                addSpan.text("(" + (add > 0 ? "+": "") + add + ")");
+            }
+        } else {
+            addSpan.text("(" + (add - 1 > 0 ? "+": "") + (add - 1) + ")");
+        }
+    }
+    updateScoreboard();
+}
+
+function commitButtonPressed() {
+    $("#scoreboard").children().each(function(_, rowDiv) {
+        if ($(rowDiv).find(".additional-score").text().length !== 0) {
+            let add = parseInt($(rowDiv).find(".additional-score").text().replace("(", "").replace("+", "").replace(")", ""));
+            let score = parseInt($(rowDiv).find(".score").text());
+            $(rowDiv).find(".score").text(score + add);
+            $(rowDiv).find(".additional-score").text("");
+        }
+    });
     updateScoreboard();
 }
