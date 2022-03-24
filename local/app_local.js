@@ -95,7 +95,7 @@ let displayUserSelect = function(users) {
 var startGame = function(players) {
     function generateRowDiv(player) {        
         let pfpDiv = $("<div>", { class: "pfp-wrapper" });
-        let pfpImg = $("<img>", { class: "pfp", src: player.pfpUrl });
+        let pfpImg = $("<img>", { class: "pfp", onerror: "this.src='../defpfp.jpg'" , src: player.pfpUrl });
         pfpDiv.append(pfpImg);
 
         let nameDiv = $("<div>", { class: "name-wrapper" });
