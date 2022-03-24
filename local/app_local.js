@@ -62,13 +62,12 @@ function hotCommit(e) {
 
 document.addEventListener('keyup', hotCommit, false);
 
-
-let displayUserSelect = function(users) {
-    function generateRowDiv(user) {        
+let displayUserSelect = function(users) { 
+	function generateRowDiv(user) {        
         let pfpDiv = $("<div>", { class: "pfp-wrapper" });
-        let pfpImg = $("<img>", { class: "pfp", src: user.pfpUrl });
+        let pfpImg = $("<img>", { class: "pfp", onerror: "this.src='../defpfp.jpg'" , src: user.pfpUrl });
         pfpDiv.append(pfpImg);
-
+		
         let nameDiv = $("<div>", { class: "name-wrapper" });
         let nameSpan = $("<span>", { class: "name" }).text(user.name);
         nameSpan.css({ color: user.textColor });
