@@ -27,7 +27,11 @@ let getDataFromDatabase = function() {
         [9, "Sean", "#f547ff", "https://cdn.discordapp.com/avatars/165612940177833984/6c3b381a8d34a45f0e2de47a9e172333.webp?size=128"],
         [10, "Sabrina", "#9acbff", "https://cdn.discordapp.com/avatars/716047120909598812/1f06bf796f707f355d29a2c2ea146e06.webp?size=128"],
         [11, "Tri", "#26453e", "https://icons.iconarchive.com/icons/fasticon/happy-trees/256/Tree-02-icon.png"],
-        [12, "Emaan", "#ef5250", "https://cdn.discordapp.com/avatars/409189769273278464/38947cc4eb45b8fd8746738d0d9da273.webp?size=128"]
+        [12, "Emaan", "#ef5250", "https://cdn.discordapp.com/avatars/409189769273278464/38947cc4eb45b8fd8746738d0d9da273.webp?size=128"],
+        [13, "Megan", "#000000", ""],
+        [14, "Sid", "#000000", ""],
+        [15, "Aadil", "#000000", ""],
+        [16, "Myana", "#000000", ""]
     ];
     users.sort(function(a, b) {
         return a[1] < b[1] ? -1 : 1;
