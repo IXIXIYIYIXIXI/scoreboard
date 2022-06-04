@@ -96,3 +96,27 @@ function commitButtonPressed() {
     });
     updateScoreboard();
 }
+
+function testAddButtonPressed() {
+    $("button").click(function() {
+        data = {
+            "name": "Test Website",
+            "pfpUrl": "https://cdn.discordapp.com/avatars/164874920701067264/e203ec771f89b249a985833ed7e3b266.webp?size=128",
+        };
+
+        $.ajax({
+            url: "https://792w3ig3nj.execute-api.us-east-2.amazonaws.com/create-mongodb-player-document",
+            type: "POST",
+            crossDomain: true,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+}
