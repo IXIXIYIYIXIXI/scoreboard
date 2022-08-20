@@ -32,7 +32,7 @@ let getDataFromDatabase = function() {
         [14, "Sid", "#000000", ""],
         [15, "Aadil", "#000000", ""],
         [16, "Myana", "#000000", ""],
-	[16, "Rushil", "FF0000", ""]
+	[16, "Rushil", "#FF0000", ""]
     ];
     users.sort(function(a, b) {
         return a[1] < b[1] ? -1 : 1;
