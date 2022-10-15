@@ -28,11 +28,13 @@ let getDataFromDatabase = function() {
         [10, "Sabrina", "#9acbff", "https://cdn.discordapp.com/avatars/716047120909598812/1f06bf796f707f355d29a2c2ea146e06.webp?size=128"],
         [11, "Tri", "#26453e", "https://icons.iconarchive.com/icons/fasticon/happy-trees/256/Tree-02-icon.png"],
         [12, "Emaan", "#ef5250", "https://cdn.discordapp.com/avatars/409189769273278464/38947cc4eb45b8fd8746738d0d9da273.webp?size=128"],
-        [13, "Megan", "#000000", ""],
-        [14, "Sid", "#000000", ""],
-        [15, "Aadil", "#000000", ""],
-        [16, "Myana", "#000000", ""],
-	[16, "Rushil", "#FF0000", ""]
+        [13, "Sid", "#B3A4EA", "https://cdn.discordapp.com/attachments/1030662028353880076/1030662332629647400/Untitled_Artwork.jpg"],
+        [14, "Aadil", "#7AE40A", "https://cdn.discordapp.com/avatars/180448170885644288/e947ba8dece6f60c53a573d6f441134b.webp?size=80"],
+        [15, "Myana", "#000000", ""],
+	[16, "Rushil", "#FF0000", ""],
+	[17, "Ash", "#F8C8DC", "https://cdn.discordapp.com/avatars/235730443616518145/b18ad9afdd764f610af44b7f2cb74722.webp?size=80"],
+	[18, "Kevin C.", "#F0FFF0", "https://cdn.discordapp.com/avatars/164870218982621184/27ceac3aa58f8d17fbb93fdaedcc3e6b.webp?size=80"],
+	[19, "Kevin P.", "#62BB1C", ""]
     ];
     users.sort(function(a, b) {
         return a[1] < b[1] ? -1 : 1;
