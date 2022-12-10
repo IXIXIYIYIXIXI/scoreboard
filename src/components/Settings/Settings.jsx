@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -69,16 +69,39 @@ function NewPlayerModal({ setReload, ...props }) {
 }
 
 function EditPlayerModal({ setReload, player, ...props }) {
+    const [color, setColor] = useState('#000000');
     if (!player) {
         player = {
+            id: 0,
             name: '',
             color: '#000000',
             profilePicture: 'https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg'
         };
     }
-    const handleSubmit = (event) => {
 
+    useEffect(() => {
+        setColor(player.color);
+    }, [player]);
+
+    const handleClose = () => {
+        props.onHide();
+        setColor(player.color);
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (form.checkValidity() === false || player.id === 0) {
+            event.stopPropagation();
+            return;
+        }
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        updatePlayerById(player.id, data.name, color, data.profilePicture);
+        setReload(true);
+        props.onHide();
+    };
+
     return (
         <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
             <Modal.Header closeButton>
@@ -92,7 +115,7 @@ function EditPlayerModal({ setReload, player, ...props }) {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Color</Form.Label>
-                        <Form.Control id='colorInput' name='color' type='color' required />
+                        <Form.Control id='colorInput' name='color' type='color' value={color} onChange={(event) => setColor(event.target.value)} required />
                     </Form.Group>
                     <Form.Group controlId='editPlayerForm.ProfilePicture'>
                         <Form.Label>Profile Picture URL</Form.Label>
@@ -100,8 +123,8 @@ function EditPlayerModal({ setReload, player, ...props }) {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant='secondary' onClick={props.onHide}>Cancel</Button>
-                    <Button variant='primary' type='submit'>Create</Button>
+                    <Button variant='secondary' onClick={handleClose}>Cancel</Button>
+                    <Button variant='primary' type='submit'>Apply</Button>
                 </Modal.Footer>
             </Form>
         </Modal>
@@ -109,13 +132,13 @@ function EditPlayerModal({ setReload, player, ...props }) {
 }
 
 function Settings() {
-    const [players, setPlayers] = React.useState([]);
-    const [loading, setLoading] = React.useState(true);
-    const [showNewPlayer, setShowNewPlayer] = React.useState(false);
-    const [showEditPlayer, setShowEditPlayer] = React.useState(false);
-    const [currentEditPlayer, setCurrentEditPlayer] = React.useState(null);
+    const [players, setPlayers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [showNewPlayer, setShowNewPlayer] = useState(false);
+    const [showEditPlayer, setShowEditPlayer] = useState(false);
+    const [currentEditPlayer, setCurrentEditPlayer] = useState(null);
 
-    const handleEditPlayer = (event) => {
+    const handleShowEditPlayer = (event) => {
         function componentToHex(c) {
             var hex = c.toString(16);
             return hex.length == 1 ? "0" + hex : hex;
@@ -128,11 +151,17 @@ function Settings() {
             return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
         const player = event.currentTarget;
+        const id = player.getAttribute('data-key');
         const name = player.querySelector('.name').textContent;
         const color = rgbToHex(player.style.borderColor);
         const profilePicture = player.querySelector('.profilePicture').src;
-        setCurrentEditPlayer({ name, color, profilePicture });
+        setCurrentEditPlayer({ id, name, color, profilePicture });
         setShowEditPlayer(true);
+    };
+
+    const handleHideEditPlayer = () => {
+        setCurrentEditPlayer(null);
+        setShowEditPlayer(false);
     };
 
     // https://stackoverflow.com/questions/55240526/useeffect-second-argument-variations-in-react-hook
@@ -153,14 +182,14 @@ function Settings() {
             </div>
             <div id='players-container'>
                 {players.map((player) => (
-                    <div className='player' style={{ borderColor: player.color }} onClick={handleEditPlayer} key={player.id}>
+                    <div className='player' style={{ borderColor: player.color }} onClick={handleShowEditPlayer} key={player.id} data-key={player.id}>
                         <h2 className='name'>{player.name}</h2>
                         <img className='profilePicture' src={player.profilePicture} alt={player.name} />
                     </div>
                 ))}
             </div>
             <NewPlayerModal show={showNewPlayer} onHide={() => setShowNewPlayer(false)} setReload={setLoading} />
-            <EditPlayerModal show={showEditPlayer} onHide={() => setShowEditPlayer(false)} setReload={setLoading} player={currentEditPlayer} />
+            <EditPlayerModal show={showEditPlayer} onHide={() => handleHideEditPlayer()} setReload={setLoading} player={currentEditPlayer} />
         </div>
     );
 }
