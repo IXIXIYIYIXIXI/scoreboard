@@ -70,6 +70,8 @@ function NewPlayerModal({ setReload, ...props }) {
 
 function EditPlayerModal({ setReload, player, ...props }) {
     const [color, setColor] = useState('#000000');
+    const [showDelete, setShowDelete] = useState(false);
+
     if (!player) {
         player = {
             id: 0,
@@ -82,6 +84,11 @@ function EditPlayerModal({ setReload, player, ...props }) {
     useEffect(() => {
         setColor(player.color);
     }, [player]);
+
+    const handleDelete = () => {
+        setReload(true);
+        props.onHide();
+    };
 
     const handleClose = () => {
         props.onHide();
@@ -103,30 +110,57 @@ function EditPlayerModal({ setReload, player, ...props }) {
     };
 
     return (
+        <>
+            <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
+                <Modal.Header closeButton>
+                    <Modal.Title id='contained-modal-title-vcenter'>Edit Player</Modal.Title>
+                </Modal.Header>
+                <Form onSubmit={handleSubmit}>
+                    <Modal.Body>
+                        <Form.Group controlId='editPlayerForm.Name'>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control name='name' type='text' placeholder='John Doe' defaultValue={player.name} required autoFocus />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Color</Form.Label>
+                            <Form.Control id='colorInput' name='color' type='color' value={color} onChange={(event) => setColor(event.target.value)} required />
+                        </Form.Group>
+                        <Form.Group controlId='editPlayerForm.ProfilePicture'>
+                            <Form.Label>Profile Picture URL</Form.Label>
+                            <Form.Control name='profilePicture' type='text' placeholder='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' defaultValue={player.profilePicture} required />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant='danger' onClick={() => setShowDelete(true)}>Delete</Button>
+                        <Button variant='secondary' onClick={handleClose}>Cancel</Button>
+                        <Button variant='primary' type='submit'>Apply</Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
+            <ConfirmDeleteModal show={showDelete} onHide={() => setShowDelete(false)} id={player.id} handleDelete={handleDelete} />
+        </>
+    );
+}
+
+function ConfirmDeleteModal({ id, handleDelete, ...props }) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        deletePlayerById(id);
+        props.onHide();
+        handleDelete();
+    };
+    return (
         <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
             <Modal.Header closeButton>
-                <Modal.Title id='contained-modal-title-vcenter'>Edit Player</Modal.Title>
+                <Modal.Title id='contained-modal-title-vcenter'>Delete Player</Modal.Title>
             </Modal.Header>
-            <Form onSubmit={handleSubmit}>
-                <Modal.Body>
-                    <Form.Group controlId='editPlayerForm.Name'>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control name='name' type='text' placeholder='John Doe' defaultValue={player.name} required autoFocus />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Color</Form.Label>
-                        <Form.Control id='colorInput' name='color' type='color' value={color} onChange={(event) => setColor(event.target.value)} required />
-                    </Form.Group>
-                    <Form.Group controlId='editPlayerForm.ProfilePicture'>
-                        <Form.Label>Profile Picture URL</Form.Label>
-                        <Form.Control name='profilePicture' type='text' placeholder='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' defaultValue={player.profilePicture} required />
-                    </Form.Group>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant='secondary' onClick={handleClose}>Cancel</Button>
-                    <Button variant='primary' type='submit'>Apply</Button>
-                </Modal.Footer>
-            </Form>
+            <Modal.Body>
+                <p>Are you sure you want to delete this player?</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant='secondary' onClick={props.onHide}>Cancel</Button>
+                <Button variant='danger' onClick={handleSubmit}>Delete</Button>
+            </Modal.Footer>
         </Modal>
     );
 }
