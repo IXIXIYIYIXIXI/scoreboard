@@ -70,6 +70,10 @@
     transition: 0.15s;
 }
 
+#settings-container #players-container .player {
+    cursor: pointer;
+}
+
 #settings-container #players-container .player .name,
 .modal-content .modal-player-preview .name {
     font-size: 18px;
