@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/scoreboard/static/css/main.b9e0c5d5.css",
-    "main.js": "/scoreboard/static/js/main.c195b52e.js",
+    "main.js": "/scoreboard/static/js/main.ddf850fa.js",
     "index.html": "/scoreboard/index.html",
     "main.b9e0c5d5.css.map": "/scoreboard/static/css/main.b9e0c5d5.css.map",
-    "main.c195b52e.js.map": "/scoreboard/static/js/main.c195b52e.js.map"
+    "main.ddf850fa.js.map": "/scoreboard/static/js/main.ddf850fa.js.map"
   },
   "entrypoints": [
     "static/css/main.b9e0c5d5.css",
-    "static/js/main.c195b52e.js"
+    "static/js/main.ddf850fa.js"
   ]
 }
