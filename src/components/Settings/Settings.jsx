@@ -31,8 +31,8 @@ function NewPlayerModal({ setReload, ...props }) {
             </Modal.Header>
             <div id='modal-new-player-preview-container'>
                 <div class='modal-player-preview'>
-                    <h2 className='name'></h2>
-                    <img className='profilePicture' src='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' alt='Profile Picture' />
+                    <p className='name'></p>
+                    <img className='profilePicture' src='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' alt='PFP' />
                 </div>
             </div>
             <Form onSubmit={handleSubmit}>
@@ -118,7 +118,7 @@ function EditPlayerModal({ setReload, player, ...props }) {
                 <div id='modal-edit-player-preview-container'>
                     <div class='modal-player-preview'>
                         <h2 className='name'>{player.name}</h2>
-                        <img className='profilePicture' src={player.profilePicture} style={{ color: color }} alt='Profile Picture' />
+                        <img className='profilePicture' src={player.profilePicture} style={{ color: color }} alt='PFP' />
                     </div>
                 </div>
                 <Form onSubmit={handleSubmit}>

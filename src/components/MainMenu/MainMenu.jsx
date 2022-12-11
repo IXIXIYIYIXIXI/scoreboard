@@ -9,9 +9,9 @@ function MainMenu() {
                 <img src="https://ih1.redbubble.net/image.1268011224.3675/st,small,507x507-pad,600x600,f8f8f8.jpg" alt="soju" className="splash img-circle" />
             </div>
             <div className="container-fluid text-center">
-                <Link to='/scoreboard/lobby' className="btn btn-lg">play</Link>
-                <Link to='/scoreboard/settings' className="btn btn-lg">settings</Link>
-                <Link to='/scoreboard/stats' className="btn btn-lg">stats</Link>
+                <Link to='lobby' className="btn btn-lg">play</Link>
+                <Link to='settings' className="btn btn-lg">settings</Link>
+                <Link to='stats' className="btn btn-lg">stats</Link>
             </div>
             <footer className="footer">
                 <div className="feet text-muted">

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import MainMenu from './components/MainMenu/MainMenu';
@@ -8,21 +8,21 @@ import Lobby from './components/Lobby/Lobby';
 import Game from './components/Game/Game';
 import Settings from './components/Settings/Settings';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: '/scoreboard',
+    path: '/',
     element: <MainMenu />
   },
   {
-    path: '/scoreboard/lobby',
+    path: '/lobby',
     element: <Lobby />
   },
   {
-    path: '/scoreboard/game',
+    path: '/game',
     element: <Game />
   },
   {
-    path: '/scoreboard/settings',
+    path: '/settings',
     element: <Settings />
   }
 ]);
