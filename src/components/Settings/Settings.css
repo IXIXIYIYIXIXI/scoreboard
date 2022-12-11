@@ -41,7 +41,7 @@
 #settings-container #players-container {
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     padding: 1rem;
     user-select: none;
@@ -65,7 +65,7 @@
     padding: 1rem;
     text-align: center;
     border: 3px solid #1f2023;
-    height: 200px;
+    height: 300px;
     flex: 1;
     transition: 0.15s;
 }
@@ -76,17 +76,22 @@
 
 #settings-container #players-container .player .name,
 .modal-content .modal-player-preview .name {
-    font-size: 18px;
+    height: 50px;
+    font-size: 24px;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #e8e8e8;
 }
 
 #settings-container #players-container .player .profilePicture,
 .modal-content .modal-player-preview .profilePicture {
-    width: 100px;
-    height: 100px;
+    width: 175px;
+    height: 175px;
     border-radius: 100%;
     margin-top: auto;
-    box-shadow: 0 0 5px 5px;
+    box-shadow: 0 0 1px 5px;
     color: black;
+    margin-bottom: 12.5px;
 }
 
 .modal-content {
@@ -123,7 +128,7 @@
 }
 
 .modal-content .modal-player-preview {
-    width: 30%;
+    width: 60%;
     margin: auto;
     transition: 0s;
 }
