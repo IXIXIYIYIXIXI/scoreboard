@@ -5,23 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import {
     createNewPlayer,
     getAllPlayers,
-    getPlayerById,
     updatePlayerById,
-    addSessionToPlayer,
-    deletePlayerById,
-    deleteSessionFromPlayer,
-    createNewSession,
-    getAllSessions,
-    getSessionById,
-    getOngoingSessions,
-    getFinishedSessions,
-    getFinishedSessionsByPlayerId,
-    updateSessionById,
-    addPlayersToSession,
-    deletePlayersFromSession,
-    addScoreToPlayerInSession,
-    deleteScoreFromPlayerInSession,
-    getScoresFromPlayerInSession
+    deletePlayerById
 } from '../../apiHelper';
 import './Settings.css';
 
@@ -44,19 +29,32 @@ function NewPlayerModal({ setReload, ...props }) {
             <Modal.Header closeButton>
                 <Modal.Title id='contained-modal-title-vcenter'>New Player</Modal.Title>
             </Modal.Header>
+            <div id='modal-new-player-preview-container'>
+                <div class='modal-player-preview'>
+                    <h2 className='name'></h2>
+                    <img className='profilePicture' src='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' alt='Profile Picture' />
+                </div>
+            </div>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
                     <Form.Group controlId='newPlayerForm.Name'>
                         <Form.Label>Name</Form.Label>
-                        <Form.Control name='name' type='text' placeholder='John Doe' required autoFocus />
+                        <Form.Control name='name' type='text' placeholder='John Doe' onChange={(event) => {
+                            document.querySelector('#modal-new-player-preview-container .modal-player-preview .name').innerText = event.target.value;
+                        }} required autoFocus />
                     </Form.Group>
                     <Form.Group controlId='newPlayerForm.Color'>
                         <Form.Label>Color</Form.Label>
-                        <Form.Control name='color' type='color' required />
+                        <Form.Control name='color' type='color' onChange={(event) => {
+                            document.querySelector('#modal-new-player-preview-container .modal-player-preview .profilePicture').style.color = event.target.value;
+                        }} required />
                     </Form.Group>
                     <Form.Group controlId='newPlayerForm.ProfilePicture'>
                         <Form.Label>Profile Picture URL</Form.Label>
-                        <Form.Control name='profilePicture' type='text' placeholder='https://www.example.com/example.png' defaultValue='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' required />
+                        <Form.Control name='profilePicture' type='text' placeholder='https://www.example.com/example.png'
+                            defaultValue='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' onChange={(event) => {
+                                document.querySelector('#modal-new-player-preview-container .modal-player-preview .profilePicture').src = event.target.value;
+                            }} required />
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
@@ -104,8 +102,10 @@ function EditPlayerModal({ setReload, player, ...props }) {
         }
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        updatePlayerById(player.id, data.name, color, data.profilePicture);
-        setReload(true);
+        if (player.name !== data.name || player.color !== color || player.profilePicture !== data.profilePicture) {
+            updatePlayerById(player.id, data.name, color, data.profilePicture);
+            setReload(true);
+        }
         props.onHide();
     };
 
@@ -115,19 +115,33 @@ function EditPlayerModal({ setReload, player, ...props }) {
                 <Modal.Header closeButton>
                     <Modal.Title id='contained-modal-title-vcenter'>Edit Player</Modal.Title>
                 </Modal.Header>
+                <div id='modal-edit-player-preview-container'>
+                    <div class='modal-player-preview'>
+                        <h2 className='name'>{player.name}</h2>
+                        <img className='profilePicture' src={player.profilePicture} style={{ color: color }} alt='Profile Picture' />
+                    </div>
+                </div>
                 <Form onSubmit={handleSubmit}>
                     <Modal.Body>
                         <Form.Group controlId='editPlayerForm.Name'>
                             <Form.Label>Name</Form.Label>
-                            <Form.Control name='name' type='text' placeholder='John Doe' defaultValue={player.name} required autoFocus />
+                            <Form.Control name='name' type='text' placeholder='John Doe' defaultValue={player.name} onChange={(event) => {
+                                document.querySelector('#modal-edit-player-preview-container .modal-player-preview .name').innerText = event.target.value;
+                            }} required autoFocus />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Color</Form.Label>
-                            <Form.Control id='colorInput' name='color' type='color' value={color} onChange={(event) => setColor(event.target.value)} required />
+                            <Form.Control id='colorInput' name='color' type='color' value={color} onChange={(event) => {
+                                setColor(event.target.value);
+                                document.querySelector('#modal-edit-player-preview-container .modal-player-preview .profilePicture').style.borderColor = event.target.value;
+                            }} required />
                         </Form.Group>
                         <Form.Group controlId='editPlayerForm.ProfilePicture'>
                             <Form.Label>Profile Picture URL</Form.Label>
-                            <Form.Control name='profilePicture' type='text' placeholder='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' defaultValue={player.profilePicture} required />
+                            <Form.Control name='profilePicture' type='text' placeholder='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg'
+                                defaultValue={player.profilePicture} onChange={(event) => {
+                                    document.querySelector('#modal-edit-player-preview-container .modal-player-preview .profilePicture').src = event.target.value;
+                                }} required />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
@@ -175,19 +189,19 @@ function Settings() {
     const handleShowEditPlayer = (event) => {
         function componentToHex(c) {
             var hex = c.toString(16);
-            return hex.length == 1 ? "0" + hex : hex;
+            return hex.length === 1 ? '0' + hex : hex;
         }
 
         function rgbToHex(color) {
             const r = parseInt(color.slice(4, color.indexOf(',')));
             const g = parseInt(color.slice(color.indexOf(',') + 2, color.lastIndexOf(',')));
             const b = parseInt(color.slice(color.lastIndexOf(',') + 2, color.lastIndexOf(')')));
-            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+            return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
         const player = event.currentTarget;
         const id = player.getAttribute('data-key');
         const name = player.querySelector('.name').textContent;
-        const color = rgbToHex(player.style.borderColor);
+        const color = rgbToHex(player.querySelector('.profilePicture').style.color);
         const profilePicture = player.querySelector('.profilePicture').src;
         setCurrentEditPlayer({ id, name, color, profilePicture });
         setShowEditPlayer(true);
@@ -216,9 +230,9 @@ function Settings() {
             </div>
             <div id='players-container'>
                 {players.map((player) => (
-                    <div className='player' style={{ borderColor: player.color }} onClick={handleShowEditPlayer} key={player.id} data-key={player.id}>
+                    <div className='player' onClick={handleShowEditPlayer} key={player.id} data-key={player.id}>
                         <h2 className='name'>{player.name}</h2>
-                        <img className='profilePicture' src={player.profilePicture} alt={player.name} />
+                        <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
                     </div>
                 ))}
             </div>
