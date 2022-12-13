@@ -61,3 +61,33 @@
     width: 10%;
     text-align: right;
 }
+
+#scoreboard-container .scoreboard .player .buttons {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    justify-content: center;
+}
+
+#scoreboard-container .scoreboard .player .buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+#scoreboard-container .scoreboard .player .buttons button:hover {
+    background-color: var(--button-color-hover);
+    transition: 0.15s;
+}
+
+#scoreboard-container .scoreboard .player .buttons button:disabled {
+    background-color: var(--button-color-disabled);
+    cursor: not-allowed;
+}
