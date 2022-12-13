@@ -1,21 +1,3 @@
-:root {
-    --text-color: #E8E8E8;
-    --button-text-color: #FFFFFF;
-    --background-color: #36393F;
-    --button-color: #5865F2;
-    --button-color-hover: #3C45A5;
-    --player-profile-background-color: #2F3136;
-    --player-profile-border-color: #1F2023;
-    --player-profile-divider-color: #202225;
-    --player-profile-shadow-color: rgba(0, 0, 0, 0.3);
-    --default-profile-picture-border-color: #000000;
-    --modal-divider-color: #202225;
-    --modal-close-button-filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(62deg) brightness(108%) contrast(101%);
-    --modal-input-background-color: #2F3136;
-    --modal-input-border-color: #040405;
-    --modal-input-focus-border-color: #5865F2;
-}
-
 .player-grid-container {
     color: var(--text-color);
     background-color: var(--background-color);
@@ -54,6 +36,11 @@
 .player-grid-container .header button:hover {
     background-color: var(--button-color-hover);
     transition: 0.15s;
+}
+
+.player-grid-container .header button:disabled {
+    background-color: var(--button-color-disabled);
+    cursor: not-allowed;
 }
 
 .player-grid-container .players-container {

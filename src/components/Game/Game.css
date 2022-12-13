@@ -1,0 +1,63 @@
+#scoreboard-container {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    width: 100%;
+    height: 100vh;
+    display: block;
+}
+
+#scoreboard-container .header {
+    padding: 1rem;
+}
+
+#scoreboard-container .header .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#scoreboard-container .header .subtitle {
+    font-size: 18px;
+}
+
+#scoreboard-container .scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    user-select: none;
+    gap: 1rem;
+}
+
+#scoreboard-container .scoreboard .player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    user-select: none;
+    border: 3px solid var(--player-profile-border-color);
+    border-radius: 10px;
+    width: 50%;
+}
+
+#scoreboard-container .scoreboard .player .profilePicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-top: auto;
+    box-shadow: 0 0 1px 3px;
+    color: var(--default-profile-picture-border-color);
+}
+
+#scoreboard-container .scoreboard .player .name {
+    font-size: 30px;
+    width: 40%;
+    text-align: center;
+    flex: 1;
+}
+
+#scoreboard-container .scoreboard .player .score {
+    font-size: 48px;
+    width: 10%;
+    text-align: right;
+}

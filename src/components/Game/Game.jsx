@@ -1,39 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import './Game.css';
 
 function Game() {
-    const selectedPlayers = useLocation().state;
+    const location = useLocation();
+    const selectedPlayers = useMemo(() => location.state, [location]);
     const [players, setPlayers] = useState({});
-    console.log('Players: ', players);
 
-    useEffect(() => {
-        const updatedPlayers = {};
-        Object.entries(players).forEach(([key, player]) => {
-            if (key in selectedPlayers) {
-                updatedPlayers[key] = player;
-            }
-        });
-
-        Object.entries(selectedPlayers).forEach(([key, player]) => {
-            if (!(key in players)) {
-                updatedPlayers[key] = {
-                    name: player.name,
-                    color: player.color,
-                    profilePicture: player.profilePicture,
-                    times: []
-                };
-            }
-        });
-        setPlayers(updatedPlayers);
-    }, [selectedPlayers, players]);
-
-    console.log('Updated Players: ', players);
+    useMemo(() => {
+        setPlayers(selectedPlayers);
+    }, [selectedPlayers]);
 
     return (
-        <div>
-            <h1>Game</h1>
-            <p>props.players</p>
-        </div>
+        <div id='scoreboard-container'>
+            <div className='header'>
+                <h2 className='title'>Scoreboard</h2>
+                <p className='subtitle'>Subtitle</p>
+            </div>
+            <div className='scoreboard'>
+                {Object.entries(players).map(([id, player]) => (
+                    <div className='player' key={id}>
+                        <img className='profilePicture' style={{ color: player.color }} src={player.profilePicture} alt='profile' />
+                        <h2 className='name'>{player.name}</h2>
+                        <h2 className='score'>{player.times.length}</h2>
+                    </div>
+                ))}
+            </div>
+        </div >
     );
 }
 
