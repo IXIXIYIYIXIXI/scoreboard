@@ -26,7 +26,7 @@ const getAllPlayers = async () => {
 const getPlayerById = async (id) => {
     const response = await fetch(`${API_URL}/players/${id}`);
     const data = await response.json();
-    return data;
+    return data.Item;
 };
 
 const updatePlayerById = async (id, name, color, profilePicture) => {
@@ -94,13 +94,13 @@ const createNewSession = async (date, playerIds) => {
     });
     const data = await response.json();
     console.log(data);
-    return data;
+    return data.slice(20);
 };
 
 const getAllSessions = async () => {
     const response = await fetch(`${API_URL}/sessions`);
     const data = await response.json();
-    return data;
+    return data.Items;
 };
 
 const getSessionById = async (id) => {
@@ -112,7 +112,13 @@ const getSessionById = async (id) => {
 const getOngoingSessions = async () => {
     const response = await fetch(`${API_URL}/sessions/ongoing`);
     const data = await response.json();
-    return data;
+    return data.Items;
+};
+
+const getOngoingSessionsVerbose = async () => {
+    const response = await fetch(`${API_URL}/sessions/ongoing/verbose`);
+    const data = await response.json();
+    return data; // Not data.Items because API is wack
 };
 
 const getFinishedSessions = async () => {
@@ -217,6 +223,7 @@ export {
     getAllSessions,
     getSessionById,
     getOngoingSessions,
+    getOngoingSessionsVerbose,
     getFinishedSessions,
     getFinishedSessionsByPlayerId,
     updateSessionById,

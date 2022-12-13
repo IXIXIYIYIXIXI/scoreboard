@@ -1,0 +1,112 @@
+#lobby-select-container {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    width: 100%;
+    height: 100vh;
+    display: block;
+}
+
+#lobby-select-container .header {
+    padding: 1rem;
+}
+
+#lobby-select-container .header .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#lobby-select-container .header .subtitle {
+    font-size: 18px;
+}
+
+#lobby-select-container .header button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background-color: var(--button-color);
+    border: none;
+    font-size: 15px;
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    line-height: 18px;
+    color: var(--button-text-color);
+}
+
+#lobby-select-container .session-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    user-select: none;
+}
+
+#lobby-select-container .session-list .session {
+    width: 100%;
+    border: 3px solid var(--player-profile-border-color);
+    border-radius: 1rem;
+}
+
+#lobby-select-container .session-list .session .session-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 24px;
+    border-bottom: 3px solid var(--player-profile-border-color);
+}
+
+#lobby-select-container .session-list .session .session-info button {
+    background-color: var(--button-color);
+    border: none;
+    font-size: 15px;
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    line-height: 18px;
+    color: var(--button-text-color);
+}
+
+#lobby-select-container .session-list .session .session-players {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    user-select: none;
+}
+
+#lobby-select-container .player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 1rem;
+    background-color: var(--player-profile-background-color);
+    padding: 1rem;
+    text-align: center;
+    border: 3px solid var(--player-profile-border-color);
+    height: 250px;
+    flex: 1;
+}
+
+#lobby-select-container .player .name {
+    height: 50px;
+    font-size: 20px;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--player-profile-divider-color);
+}
+
+#lobby-select-container .player .profilePicture {
+    width: 125px;
+    height: 125px;
+    border-radius: 100%;
+    margin-top: auto;
+    box-shadow: 0 0 1px 5px;
+    color: var(--default-profile-picture-border-color);
+    margin-bottom: 12.5px;
+}

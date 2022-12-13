@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -30,7 +30,7 @@ function NewPlayerModal({ setReload, ...props }) {
                 <Modal.Title id='contained-modal-title-vcenter'>New Player</Modal.Title>
             </Modal.Header>
             <div id='modal-new-player-preview-container'>
-                <div class='modal-player-preview'>
+                <div className='modal-player-preview'>
                     <p className='name'></p>
                     <img className='profilePicture' src='https://raw.githubusercontent.com/IXIXIYIYIXIXI/scoreboard/main/assets/defpfp.jpg' alt='PFP' />
                 </div>
@@ -116,7 +116,7 @@ function EditPlayerModal({ setReload, player, ...props }) {
                     <Modal.Title id='contained-modal-title-vcenter'>Edit Player</Modal.Title>
                 </Modal.Header>
                 <div id='modal-edit-player-preview-container'>
-                    <div class='modal-player-preview'>
+                    <div className='modal-player-preview'>
                         <h2 className='name'>{player.name}</h2>
                         <img className='profilePicture' src={player.profilePicture} style={{ color: color }} alt='PFP' />
                     </div>
@@ -181,6 +181,7 @@ function ConfirmDeleteModal({ id, handleDelete, ...props }) {
 
 function Settings() {
     const [players, setPlayers] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(true);
     const [showNewPlayer, setShowNewPlayer] = useState(false);
     const [showEditPlayer, setShowEditPlayer] = useState(false);
@@ -213,22 +214,21 @@ function Settings() {
     };
 
     // https://stackoverflow.com/questions/55240526/useeffect-second-argument-variations-in-react-hook
-    useEffect(() => {
+    useMemo(() => {
         getAllPlayers().then((players) => {
             players.sort((a, b) => a.name.localeCompare(b.name));
             setPlayers(players);
-            setLoading(false);
         });
-    }, [loading]);
+    }, []);
 
     return (
-        <div id='settings-container'>
+        <div className='player-grid-container'>
             <div className='header'>
                 <h2 className='title'>Players</h2>
                 <p className='subtitle'>Modify existing players or create new players.</p>
                 <Button variant='primary' onClick={() => setShowNewPlayer(true)}>New Player</Button>
             </div>
-            <div id='players-container'>
+            <div className='players-container'>
                 {players.map((player) => (
                     <div className='player' onClick={handleShowEditPlayer} key={player.id} data-key={player.id}>
                         <h2 className='name'>{player.name}</h2>

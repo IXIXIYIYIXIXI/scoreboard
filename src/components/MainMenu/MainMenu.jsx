@@ -10,6 +10,7 @@ function MainMenu() {
             </div>
             <div className="container-fluid text-center">
                 <Link to='lobby' className="btn btn-lg">play</Link>
+                <Link to='lobbies' className="btn btn-lg">lobbies</Link>
                 <Link to='settings' className="btn btn-lg">settings</Link>
                 <Link to='stats' className="btn btn-lg">stats</Link>
             </div>

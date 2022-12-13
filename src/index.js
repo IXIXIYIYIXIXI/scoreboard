@@ -4,6 +4,7 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import MainMenu from './components/MainMenu/MainMenu';
+import LobbySelect from './components/LobbySelect/LobbySelect';
 import Lobby from './components/Lobby/Lobby';
 import Game from './components/Game/Game';
 import Settings from './components/Settings/Settings';
@@ -14,11 +15,15 @@ const router = createHashRouter([
     element: <MainMenu />
   },
   {
+    path: '/lobbies',
+    element: <LobbySelect />
+  },
+  {
     path: '/lobby',
     element: <Lobby />
   },
   {
-    path: '/game',
+    path: '/play',
     element: <Game />
   },
   {

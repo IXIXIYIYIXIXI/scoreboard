@@ -2,11 +2,11 @@
     --text-color: #E8E8E8;
     --button-text-color: #FFFFFF;
     --background-color: #36393F;
-    --new-player-button-color: #5865F2;
-    --new-player-button-color-hover: #3C45A5;
+    --button-color: #5865F2;
+    --button-color-hover: #3C45A5;
     --player-profile-background-color: #2F3136;
     --player-profile-border-color: #1F2023;
-    --player-profile-divider-color: #E8E8E8;
+    --player-profile-divider-color: #202225;
     --player-profile-shadow-color: rgba(0, 0, 0, 0.3);
     --default-profile-picture-border-color: #000000;
     --modal-divider-color: #202225;
@@ -16,7 +16,7 @@
     --modal-input-focus-border-color: #5865F2;
 }
 
-#settings-container {
+.player-grid-container {
     color: var(--text-color);
     background-color: var(--background-color);
     width: 100%;
@@ -24,24 +24,24 @@
     display: block;
 }
 
-#settings-container .header {
+.player-grid-container .header {
     padding: 1rem;
 }
 
-#settings-container .header .title {
+.player-grid-container .header .title {
     font-size: 24px;
     font-weight: bold;
 }
 
-#settings-container .header .subtitle {
+.player-grid-container .header .subtitle {
     font-size: 18px;
 }
 
-#settings-container .header button {
+.player-grid-container .header button {
     position: absolute;
     right: 1rem;
     top: 1rem;
-    background-color: var(--new-player-button-color);
+    background-color: var(--button-color);
     border: none;
     font-size: 15px;
     padding: 10px 16px;
@@ -51,12 +51,12 @@
     color: var(--button-text-color);
 }
 
-#settings-container .header button:hover {
-    background-color: var(--new-player-button-color-hover);
+.player-grid-container .header button:hover {
+    background-color: var(--button-color-hover);
     transition: 0.15s;
 }
 
-#settings-container #players-container {
+.player-grid-container .players-container {
     display: grid;
     align-items: center;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -65,13 +65,13 @@
     user-select: none;
 }
 
-#settings-container #players-container .player:hover {
+.player-grid-container .players-container .player:hover {
     box-shadow: 0 0 7px 5px var(--player-profile-shadow-color);
     transform: translateY(-7.5px);
     transition: 0.15s;
 }
 
-#settings-container #players-container .player,
+.player-grid-container .players-container .player,
 .modal-content .modal-player-preview {
     display: flex;
     flex-direction: column;
@@ -88,11 +88,11 @@
     transition: 0.15s;
 }
 
-#settings-container #players-container .player {
+.player-grid-container .players-container .player {
     cursor: pointer;
 }
 
-#settings-container #players-container .player .name,
+.player-grid-container .players-container .player .name,
 .modal-content .modal-player-preview .name {
     height: 50px;
     font-size: 24px;
@@ -101,7 +101,7 @@
     border-bottom: 3px solid var(--player-profile-divider-color);
 }
 
-#settings-container #players-container .player .profilePicture,
+.player-grid-container .players-container .player .profilePicture,
 .modal-content .modal-player-preview .profilePicture {
     width: 175px;
     height: 175px;
