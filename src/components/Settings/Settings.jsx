@@ -8,6 +8,7 @@ import {
     updatePlayerById,
     deletePlayerById
 } from '../../apiHelper';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './Settings.css';
 
 function NewPlayerModal({ setReload, ...props }) {
@@ -229,12 +230,13 @@ function Settings() {
                 <Button variant='primary' onClick={() => setShowNewPlayer(true)}>New Player</Button>
             </div>
             <div className='players-container'>
-                {players.map((player) => (
-                    <div className='player' onClick={handleShowEditPlayer} key={player.id} data-key={player.id}>
-                        <h2 className='name'>{player.name}</h2>
-                        <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
-                    </div>
-                ))}
+                {players.length === 0 ? <LoadingSpinner />
+                    : players.map((player) => (
+                        <div className='player' onClick={handleShowEditPlayer} key={player.id} data-key={player.id}>
+                            <h2 className='name'>{player.name}</h2>
+                            <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
+                        </div>
+                    ))}
             </div>
             <NewPlayerModal show={showNewPlayer} onHide={() => setShowNewPlayer(false)} setReload={setLoading} />
             <EditPlayerModal show={showEditPlayer} onHide={() => handleHideEditPlayer()} setReload={setLoading} player={currentEditPlayer} />

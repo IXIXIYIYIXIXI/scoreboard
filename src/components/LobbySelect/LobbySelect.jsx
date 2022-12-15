@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { getOngoingSessionsVerbose, updateSessionById } from '../../apiHelper';
 import './LobbySelect.css';
 
@@ -48,23 +49,24 @@ function LobbySelect() {
                 <Link to='/lobby'><button>Create Lobby</button></Link>
             </div>
             <div className='session-list'>
-                {Object.values(ongoingSessions).map((session) => (
-                    <div className='session' key={session.id} data-key={session.id}>
-                        <div className='session-info'>
-                            {formatDate(session.date)}
-                            <button onClick={() => handleCloseLobby(session.id)}>Close Lobby</button>
-                            <Link to='/lobby' state={{ sessionId: session.id, players: session.players }}><button>Join Lobby</button></Link>
+                {loadingSessions ? <LoadingSpinner />
+                    : Object.values(ongoingSessions).map((session) => (
+                        <div className='session' key={session.id} data-key={session.id}>
+                            <div className='session-info'>
+                                {formatDate(session.date)}
+                                <button onClick={() => handleCloseLobby(session.id)}>Close Lobby</button>
+                                <Link to='/lobby' state={{ sessionId: session.id, players: session.players }}><button>Join Lobby</button></Link>
+                            </div>
+                            <div className='session-players'>
+                                {Object.values(session.players).map((player) => (
+                                    <div className='player' key={player.id} data-key={player.id}>
+                                        <div className='name'>{player.name}</div>
+                                        <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div className='session-players'>
-                            {Object.values(session.players).map((player) => (
-                                <div className='player' key={player.id} data-key={player.id}>
-                                    <div className='name'>{player.name}</div>
-                                    <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
+                    ))}
             </div>
         </div>
     );

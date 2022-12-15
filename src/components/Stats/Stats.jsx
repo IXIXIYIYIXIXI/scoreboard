@@ -15,6 +15,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { getAllPlayers, getFinishedSessionsByPlayerId } from '../../apiHelper';
 import './Stats.css';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 ChartJS.register(
     CategoryScale,
@@ -134,12 +135,13 @@ function Stats() {
                 <p className='subtitle'>View stats for each player.</p>
             </div>
             <div className='players-container'>
-                {players.map((player) => (
-                    <div className='player' onClick={() => handlePlayerClick(player)} key={player.id} data-key={player.id}>
-                        <h2 className='name'>{player.name}</h2>
-                        <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
-                    </div>
-                ))}
+                {players.length === 0 ? <LoadingSpinner />
+                    : players.map((player) => (
+                        <div className='player' onClick={() => handlePlayerClick(player)} key={player.id} data-key={player.id}>
+                            <h2 className='name'>{player.name}</h2>
+                            <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
+                        </div>
+                    ))}
             </div>
             <Modal show={showStats} onHide={onHide} aria-labelledby='contained-modal-title-vcenter' dialogClassName='stats-modal' contentClassName='stats-modal' centered>
                 <Modal.Header closeButton>

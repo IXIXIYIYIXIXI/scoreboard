@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { addSessionToPlayer, createNewSession, getAllPlayers, deletePlayersFromSession, deleteSessionFromPlayer, addPlayersToSession } from '../../apiHelper';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './Lobby.css';
 
 function Lobby() {
@@ -127,12 +128,13 @@ function Lobby() {
                 <button disabled={Object.keys(selectedPlayers).length === 0 ? 'disabled' : undefined} onClick={startGame}>Start Game</button>
             </div>
             <div className='players-container'>
-                {players.map((player) => (
-                    <div className={'player' + (player.id in selectedPlayers ? ' selected' : '')} onClick={handlePlayerClick} key={player.id} data-key={player.id}>
-                        <h2 className='name'>{player.name}</h2>
-                        <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
-                    </div>
-                ))}
+                {players.length === 0 ? <LoadingSpinner />
+                    : players.map((player) => (
+                        <div className={'player' + (player.id in selectedPlayers ? ' selected' : '')} onClick={handlePlayerClick} key={player.id} data-key={player.id}>
+                            <h2 className='name'>{player.name}</h2>
+                            <img className='profilePicture' src={player.profilePicture} style={{ color: player.color }} alt={player.name} />
+                        </div>
+                    ))}
             </div>
         </div>
     );

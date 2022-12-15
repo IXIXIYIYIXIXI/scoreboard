@@ -1,0 +1,28 @@
+.lds-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lds-ring .second {
+    animation-delay: -0.45s;
+}
+
+.lds-ring .third {
+    animation-delay: -0.3s;
+}
+
+.lds-ring .fourth {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
