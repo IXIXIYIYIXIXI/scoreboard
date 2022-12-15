@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { addSessionToPlayer, createNewSession, getAllPlayers, deletePlayersFromSession, deleteSessionFromPlayer, addPlayersToSession } from '../../apiHelper';
 import './Lobby.css';
 
@@ -11,6 +11,8 @@ function Lobby() {
     const [players, setPlayers] = useState([]);
     const [alreadyPlayingPlayers, setAlreadyPlayingPlayers] = useState({});
     const [selectedPlayers, setSelectedPlayers] = useState({});
+
+    const navigate = useNavigate();
 
     const handlePlayerClick = (event) => {
         const player = event.currentTarget;
@@ -92,12 +94,14 @@ function Lobby() {
             if (playersToAdd.length > 0) {
                 addPlayersToSession(currentSessionId, playersToAdd);
             }
+            navigate('/play', { state: { sessionId: currentSessionId, players: generatePlayersToSend() } });
         } else {
             createNewSession(new Date(), Object.keys(selectedPlayers)).then((sessionId) => {
                 Object.keys(selectedPlayers).forEach((id) => {
                     addSessionToPlayer(id, sessionId);
                 });
                 addPlayersToSession(sessionId, Object.keys(selectedPlayers));
+                navigate('/play', { state: { sessionId, players: generatePlayersToSend() } });
             });
         }
     };
@@ -120,7 +124,7 @@ function Lobby() {
             <div className='header'>
                 <h2 className='title'>Lobby</h2>
                 <p className='subtitle'>Select which players are playing in the current session.</p>
-                <Link to='/play' state={generatePlayersToSend()}><button disabled={Object.keys(selectedPlayers).length === 0 ? 'disabled' : undefined} onClick={startGame}>Start Game</button></Link>
+                <button disabled={Object.keys(selectedPlayers).length === 0 ? 'disabled' : undefined} onClick={startGame}>Start Game</button>
             </div>
             <div className='players-container'>
                 {players.map((player) => (
