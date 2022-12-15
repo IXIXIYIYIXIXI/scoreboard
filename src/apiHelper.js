@@ -130,19 +130,24 @@ const getFinishedSessions = async () => {
 const getFinishedSessionsByPlayerId = async (playerId) => {
     const response = await fetch(`${API_URL}/sessions/finished/${playerId}`);
     const data = await response.json();
-    return data;
+    return data.Items;
 };
 
 const updateSessionById = async (id, date, ongoing) => {
+    const body = {};
+    if (date) {
+        body.date = date;
+    }
+    if (ongoing !== undefined && ongoing !== null) {
+        body.ongoing = ongoing;
+    }
+
     const response = await fetch(`${API_URL}/sessions/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            date,
-            ongoing,
-        }),
+        body: JSON.stringify(body),
     });
     const data = await response.json();
     console.log(data);

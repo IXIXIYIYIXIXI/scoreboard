@@ -8,6 +8,7 @@ import LobbySelect from './components/LobbySelect/LobbySelect';
 import Lobby from './components/Lobby/Lobby';
 import Game from './components/Game/Game';
 import Settings from './components/Settings/Settings';
+import Stats from './components/Stats/Stats';
 
 const router = createHashRouter([
   {
@@ -29,6 +30,10 @@ const router = createHashRouter([
   {
     path: '/settings',
     element: <Settings />
+  },
+  {
+    path: '/stats',
+    element: <Stats />
   }
 ]);
 

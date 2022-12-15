@@ -1,0 +1,46 @@
+.stats-modal {
+    width: 90% !important;
+    min-width: 90vw !important;
+    height: 90% !important;
+}
+
+.sessions-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.sessions-container .sidebar {
+    height: 100%;
+    width: 20%;
+    user-select: none;
+}
+
+.sessions-container .sidebar .session {
+    display: flex;
+    border: 3px solid var(--player-profile-border-color);
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.sessions-container .sidebar .session:hover {
+    background-color: var(--);
+}
+
+.sessions-container .sidebar .session.selected {
+    background-color: var(--button-color);
+}
+
+.sessions-container .sidebar .session .date {
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.sessions-container .main {
+    height: 100%;
+    width: 80%;
+    border: 3px solid var(--player-profile-border-color);
+    border-radius: 5px;
+}

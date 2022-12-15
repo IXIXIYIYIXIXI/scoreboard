@@ -1,24 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getOngoingSessionsVerbose } from '../../apiHelper';
+import { getOngoingSessionsVerbose, updateSessionById } from '../../apiHelper';
 import './LobbySelect.css';
 
 function LobbySelect() {
     const [ongoingSessions, setOngoingSessions] = useState({});
     const [loadingSessions, setLoadingSessions] = useState(true);
-
-    const formatDate = (date) => {
-        const today = new Date();
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        if (date.toLocaleDateString() === today.toLocaleDateString()) {
-            return `Today at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
-        } else if (date.toLocaleDateString() === yesterday.toLocaleDateString()) {
-            return `Yesterday at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
-        } else {
-            return `${date.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
-        }
-    };
 
     useMemo(() => {
         if (loadingSessions) {
@@ -34,6 +21,25 @@ function LobbySelect() {
         }
     }, [loadingSessions]);
 
+    const formatDate = (date) => {
+        const today = new Date();
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        if (date.toLocaleDateString() === today.toLocaleDateString()) {
+            return `Today at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
+        } else if (date.toLocaleDateString() === yesterday.toLocaleDateString()) {
+            return `Yesterday at ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
+        } else {
+            return `${date.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })}`;
+        }
+    };
+
+    const handleCloseLobby = (id) => {
+        updateSessionById(id, null, false).then(() => {
+            setOngoingSessions(ongoingSessions.filter((s) => s.id !== id));
+        });
+    };
+
     return (
         <div id='lobby-select-container'>
             <div className='header'>
@@ -46,6 +52,7 @@ function LobbySelect() {
                     <div className='session' key={session.id} data-key={session.id}>
                         <div className='session-info'>
                             {formatDate(session.date)}
+                            <button onClick={() => handleCloseLobby(session.id)}>Close Lobby</button>
                             <Link to='/lobby' state={{ sessionId: session.id, players: session.players }}><button>Join Lobby</button></Link>
                         </div>
                         <div className='session-players'>
