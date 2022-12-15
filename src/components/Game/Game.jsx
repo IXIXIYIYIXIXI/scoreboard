@@ -6,7 +6,7 @@ import './Game.css';
 function Game() {
     const location = useLocation();
     const sessionId = location.state ? location.state.sessionId : undefined;
-    const selectedPlayers = location.state ? location.state.players : {};
+    const selectedPlayers = useMemo(() => location.state ? location.state.players : {}, [location.state]);
     const [players, setPlayers] = useState({});
     const [modifyPlayers, setModifyPlayers] = useState({});
 

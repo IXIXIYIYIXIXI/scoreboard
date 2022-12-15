@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { addSessionToPlayer, createNewSession, getAllPlayers, deletePlayersFromSession, deleteSessionFromPlayer, addPlayersToSession } from '../../apiHelper';
 import './Lobby.css';
 
