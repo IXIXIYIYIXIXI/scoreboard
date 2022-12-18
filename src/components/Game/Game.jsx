@@ -42,7 +42,11 @@ function Game() {
     };
 
     useMemo(() => {
-        setPlayers(selectedPlayers);
+        const sorted = Object.entries(selectedPlayers).sort((a, b) => b[1].times.length - a[1].times.length === 0 ? a[1].name.localeCompare(b[1].name) : b[1].times.length - a[1].times.length).reduce((acc, [id, player]) => {
+            acc[id] = player;
+            return acc;
+        }, {});
+        setPlayers(sorted);
     }, [selectedPlayers]);
 
     return (

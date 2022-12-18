@@ -1,11 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import 'chartjs-adapter-moment';
 import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
+    TimeScale,
     PointElement,
     LineElement,
     Title,
@@ -20,6 +22,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 ChartJS.register(
     CategoryScale,
     LinearScale,
+    TimeScale,
     PointElement,
     LineElement,
     Title,
@@ -39,6 +42,12 @@ const options = {
         },
     },
     scales: {
+        x: {
+            type: 'time',
+            time: {
+                unit: 'hour',
+            }
+        },
         y: {
             ticks: {
                 beginAtZero: true,
@@ -70,23 +79,6 @@ function Stats() {
     const [currentPlayerSessions, setCurrentPlayerSessions] = useState({});
     const [currentPlayerSessionData, setCurrentPlayerSessionData] = useState(data);
 
-    useMemo(() => {
-        getAllPlayers().then((players) => {
-            players.sort((a, b) => a.name.localeCompare(b.name));
-            setPlayers(players);
-        });
-    }, []);
-
-    useMemo(() => {
-        if (currentPlayer) {
-            getFinishedSessionsByPlayerId(currentPlayer.id).then((sessions) => {
-                sessions.sort((a, b) => new Date(b.date) - new Date(a.date));
-                setCurrentPlayerSessions(sessions);
-                handleSessionClick(sessions[0]);
-            });
-        }
-    }, [currentPlayer]);
-
     const handlePlayerClick = (player) => {
         setCurrentPlayer(player);
         setShowStats(true);
@@ -99,12 +91,15 @@ function Stats() {
         setCurrentPlayerSessionData(data);
     };
 
-    const handleSessionClick = (session) => {
-        const labels = [`Start ${new Date(session.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`];
+    const handleSessionClick = useCallback((session) => {
+        // const labels = [`Start ${new Date(session.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`];
+        // const counts = [0];
+        const labels = [new Date(session.date)];
         const counts = [0];
         for (let i = 0; i < session.players[currentPlayer.id].length; i++) {
-            const time = new Date(session.players[currentPlayer.id][i]).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-            if (labels.length > 0 && labels[labels.length - 1] === time) {
+            // const time = new Date(session.players[currentPlayer.id][i]).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            const time = new Date(session.players[currentPlayer.id][i]);
+            if (labels.length > 0 && labels[labels.length - 1].toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) === time.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })) {
                 counts[counts.length - 1]++;
             } else {
                 labels.push(time);
@@ -126,7 +121,24 @@ function Stats() {
             }
         };
         setCurrentPlayerSessionData(data);
-    };
+    }, [currentPlayer]);
+
+    useMemo(() => {
+        getAllPlayers().then((players) => {
+            players.sort((a, b) => a.name.localeCompare(b.name));
+            setPlayers(players);
+        });
+    }, []);
+
+    useMemo(() => {
+        if (currentPlayer) {
+            getFinishedSessionsByPlayerId(currentPlayer.id).then((sessions) => {
+                sessions.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setCurrentPlayerSessions(sessions);
+                handleSessionClick(sessions[0]);
+            });
+        }
+    }, [currentPlayer, handleSessionClick]);
 
     return (
         <div className='player-grid-container'>
